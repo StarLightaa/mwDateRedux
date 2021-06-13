@@ -2,20 +2,24 @@ import {
   LOGIN,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
-  SET_AUTH_HEADER,
-  RESET_PASSWORD_SUCCESS,
-  RESET_PASSWORD_ERROR,
-  RESET_PASSWORD,
-  RESET_AUTH,
-  SET_ACCOUNT,
-  UPDATE_USER,
-  UPDATE_ACTIVITY_STATUS,
-  UPDATE_ACTIVITY_STATUS_SUCCESS,
-  UPDATE_ACTIVITY_STATUS_ERROR,
+  REGISTER,
+  REGISTER_SUCCESS,
+  REGISTER_ERROR,
+  REFRESH_TOKEN,
 } from '../constants/actions';
 
 export const initialState = {
+  isRegistering: false,
+  registerFirstnameError: null,
+  registerLastNameError: null,
+  registerEmailError: null,
+  registerPasswordError: null,
+  registerPasswordConfirmationError: null,
+
   isLoggingIn: false,
+  loginEmailError: null,
+  loginPasswordError: null,
+
   isLoggedIn: false,
   user: null,
   accessToken: null,
@@ -42,6 +46,14 @@ export default (state = initialState, action) => {
         success: {},
       };
     case LOGIN_ERROR:
+      let loginEmailError = null;
+      let loginPasswordError = null;
+      let validateLoginErrors = action.payload.data.error;
+      console.log('validateErrors', validateLoginErrors);
+      if (validateLoginErrors) {
+        loginEmailError = validateLoginErrors.email;
+        loginPasswordError = validateLoginErrors.password;
+      }
       return {
         ...state,
         isLoggingIn: false,
@@ -50,6 +62,51 @@ export default (state = initialState, action) => {
         accessToken: null,
         error: action.payload,
         success: {},
+        loginEmailError: loginEmailError,
+        loginPasswordError: loginPasswordError,
+      };
+
+    case REGISTER:
+      return {...state, isRegistering: true};
+
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        isRegistering: false,
+        error: {},
+        success: {},
+      };
+    case REGISTER_ERROR:
+      console.log('payload', action.payload);
+      let firstnameError = null;
+      let lastnameError = null;
+      let emailError = null;
+      let password = null;
+      let passwordConfirmation = null;
+
+      let validateErrors = action.payload.data.error;
+      console.log('validateErrors', validateErrors);
+      if (validateErrors) {
+        firstnameError = validateErrors.firstname;
+        lastnameError = validateErrors.lastname;
+        emailError = validateErrors.email;
+        password = validateErrors.password;
+      }
+      return {
+        ...state,
+        isRegistering: false,
+        registerFirstnameError: firstnameError,
+        registerLastNameError: lastnameError,
+        registerEmailError: emailError,
+        registerPasswordError: password,
+        registerPasswordConfirmationError: null,
+        error: action.payload,
+        success: {},
+      };
+    case REFRESH_TOKEN:
+      return {
+        ...state,
+        accessToken: action.payload.token,
       };
     default:
       return state;

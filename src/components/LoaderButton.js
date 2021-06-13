@@ -1,6 +1,5 @@
 import React from 'react';
 import {Button, useTheme, Spinner} from '@ui-kitten/components';
-import PropTypes from 'prop-types';
 import {View} from 'react-native';
 
 const LoadingIndicator = props => (
@@ -9,32 +8,24 @@ const LoadingIndicator = props => (
   </View>
 );
 
-const LoaderButton = ({loading, text, ...customProps}) => {
+const LoaderButton = ({
+  loading,
+  disabled,
+  text,
+  customStyles,
+  ...customProps
+}) => {
   return (
-    // <Button {...(true && {accessoryLeft: LoadingIndicator})}>
-    //   {loading ? null : <Text>{text}</Text>}
-    // </Button>
     <Button
       {...customProps}
-      style={styles.button}
+      disabled={disabled}
+      style={[styles.button, customStyles]}
       appearance="outline"
       accessoryLeft={loading && LoadingIndicator}>
       {text}
     </Button>
   );
 };
-
-const propTypes = {
-  loading: PropTypes.bool,
-  text: PropTypes.string.isRequired,
-};
-
-const defaultProps = {
-  loading: false,
-};
-
-LoaderButton.propTypes = propTypes;
-LoaderButton.defaultProps = defaultProps;
 
 const styles = theme => ({
   button: {

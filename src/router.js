@@ -35,7 +35,9 @@ const ProfileStack = () => (
 );
 
 const TabStack = () => (
-  <Tab.Navigator tabBar={props => <TabBar {...props} />}>
+  <Tab.Navigator
+    initialRouteName="Profile"
+    tabBar={props => <TabBar {...props} />}>
     <Tab.Screen name="Search" component={SearchStack} />
     <Tab.Screen name="Profile" component={ProfileStack} />
   </Tab.Navigator>
@@ -53,7 +55,7 @@ const App = () => {
       enabled>
       <SafeAreaView style={styles.container}>
         <NavigationContainer>
-          <Stack.Navigator headerMode={'none'} initialRouteName={'Welcome'}>
+          <Stack.Navigator headerMode={'none'} initialRouteName={'Login'}>
             {isLoggedIn ? (
               <Fragment>
                 <Stack.Screen name="Tab" component={TabStack} />

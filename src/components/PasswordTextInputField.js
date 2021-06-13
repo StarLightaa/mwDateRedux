@@ -1,9 +1,9 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, TouchableWithoutFeedback} from 'react-native';
 
 import {Icon, Input} from '@ui-kitten/components';
 
-const TextInputField = ({
+const PasswordTextInputField = ({
   label,
   placeholder,
   error,
@@ -13,7 +13,17 @@ const TextInputField = ({
 }) => {
   const AlertIcon = props => <Icon {...props} name="alert-circle-outline" />;
 
-  // const [value, setValue] = React.useState('');
+  const [secureTextEntry, setSecureTextEntry] = React.useState(true);
+
+  const toggleSecureEntry = () => {
+    setSecureTextEntry(!secureTextEntry);
+  };
+
+  const renderIcon = props => (
+    <TouchableWithoutFeedback onPress={toggleSecureEntry}>
+      <Icon {...props} name={secureTextEntry ? 'eye-off' : 'eye'} />
+    </TouchableWithoutFeedback>
+  );
 
   const renderCaption = () => {
     return (
@@ -24,23 +34,16 @@ const TextInputField = ({
     );
   };
 
-  // const onChange = ({name, value}) => {
-  //   setValue(value);
-  //   setForm({...form, [name]: value});
-  // };
-
   return (
     <Input
       value={value}
       label={label}
       placeholder={placeholder}
       caption={error && renderCaption}
+      accessoryRight={renderIcon}
+      secureTextEntry={secureTextEntry}
       onChangeText={onChangeText}
       style={[styles.inputContainer, customStyles]}
-      // onChangeText={nextValue => {
-      //   onChange({name: 'email', nextValue});
-      // }}
-      // onChangeText={nextValue => setValue(nextValue)}
     />
   );
 };
@@ -67,4 +70,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TextInputField;
+export default PasswordTextInputField;
