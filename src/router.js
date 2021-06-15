@@ -18,6 +18,7 @@ import LoginScreen from './screens/LoginScreen/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import SearchScreen from './screens/SearchScreen/SearchScreen';
+import LanguageScreen from './screens/LanguageScreen/LanguageScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -65,6 +66,7 @@ const App = () => {
                 <Stack.Screen name="Welcome" component={WelcomeScreen} />
                 <Stack.Screen name="Login" component={LoginScreen} />
                 <Stack.Screen name="Register" component={RegisterScreen} />
+                <Stack.Screen name="Language" component={LanguageScreen} />
                 {/* <Stack.Screen
                   name="ConfigureURL"
                   component={ConfigureURLScreen}

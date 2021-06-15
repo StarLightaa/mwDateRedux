@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useContext} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {
   StyleSheet,
@@ -11,6 +11,8 @@ import {
   Text,
 } from 'react-native';
 
+import {LocalizationContext} from '../../localization/LocalizationContext';
+
 import {Button, Icon, Layout, Spinner, Input} from '@ui-kitten/components';
 import Container from '../../components/Container';
 import TextInputField from '../../components/TextInputField';
@@ -22,6 +24,8 @@ import {doRegister} from '../../store/actions/auth';
 
 const RegisterScreen = ({navigation}) => {
   const dispatch = useDispatch();
+
+  const {translations} = useContext(LocalizationContext);
 
   const isRegistering = useSelector(state => state.auth.isRegistering);
   const registerFirstnameInvalid = useSelector(
@@ -67,12 +71,12 @@ const RegisterScreen = ({navigation}) => {
       </View>
 
       <View style={styles.screenTitle}>
-        <Text>Создать новый аккаунт</Text>
+        <Text>{translations.REGISTER.TITLE}</Text>
       </View>
 
       <TextInputField
-        label="Имя"
-        placeholder="Введите свое имя"
+        label={translations.REGISTER.FIRSTNAME_LABEL}
+        placeholder={translations.REGISTER.FIRSTNAME_PLACEHOLDER}
         error={registerFirstnameInvalid}
         value={firstname}
         onChangeText={value => {
@@ -81,8 +85,8 @@ const RegisterScreen = ({navigation}) => {
         }}
       />
       <TextInputField
-        label="Фамилия"
-        placeholder="Введите свою фамилию"
+        label={translations.REGISTER.LASTNAME_LABEL}
+        placeholder={translations.REGISTER.LASTNAME_PLACEHOLDER}
         error={registerLastNameInvalid}
         value={lastname}
         onChangeText={value => {
@@ -92,8 +96,8 @@ const RegisterScreen = ({navigation}) => {
       />
 
       <TextInputField
-        label="Email"
-        placeholder="Введите свой email"
+        label={translations.REGISTER.EMAIL_LABEL}
+        placeholder={translations.REGISTER.EMAIL_PLACEHOLDER}
         error={registerEmailInvalid}
         value={email}
         onChangeText={value => {
@@ -102,8 +106,8 @@ const RegisterScreen = ({navigation}) => {
         }}
       />
       <PasswordTextInputField
-        label="Пароль"
-        placeholder="Введите свой пароль"
+        label={translations.REGISTER.PASSWORD_LABEL}
+        placeholder={translations.REGISTER.PASSWORD_PLACEHOLDER}
         error={registerPasswordInvalid}
         value={password}
         onChangeText={value => {
@@ -113,8 +117,8 @@ const RegisterScreen = ({navigation}) => {
       />
 
       <PasswordTextInputField
-        label="Подтверждение пароля"
-        placeholder="Повторите пароль пожалуйста"
+        label={translations.REGISTER.CONFIRM_PASSWORD_LABEL}
+        placeholder={translations.REGISTER.CONFIRM_PASSWORD_PLACEHOLDER}
         value={password_confirmation}
         onChangeText={value => {
           setForm({...form, ['password_confirmation']: value});
@@ -125,13 +129,15 @@ const RegisterScreen = ({navigation}) => {
       <TouchableOpacity
         style={styles.forgotView}
         onPress={() => navigation.navigate('ResetPassword')}>
-        <Text style={styles.textStyle}>Забыли пароль?</Text>
+        <Text style={styles.textStyle}>
+          {translations.REGISTER.FORGOT_PASSWORD}
+        </Text>
       </TouchableOpacity>
 
       <LoaderButton
         loading={isRegistering}
         disabled={isRegistering}
-        text="Зарегистрировать"
+        text={translations.REGISTER.REGISTER}
         onPress={() => registerUser()}
         customStyles={styles.actionBtn}
       />
@@ -139,13 +145,17 @@ const RegisterScreen = ({navigation}) => {
       <TouchableOpacity
         style={[styles.centerView, {marginBottom: 25}]}
         onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.textStyle}>Войти аккаунт</Text>
+        <Text style={styles.textStyle}>
+          {translations.REGISTER.GO_TO_LOGIN}
+        </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.centerView}
-        onPress={() => navigation.navigate('ChangeLanguage')}>
-        <Text style={styles.textStyle}>Сменить язык</Text>
+        onPress={() => navigation.navigate('Language')}>
+        <Text style={styles.textStyle}>
+          {translations.REGISTER.CHANGE_LANGUAGE}
+        </Text>
       </TouchableOpacity>
     </Container>
   );

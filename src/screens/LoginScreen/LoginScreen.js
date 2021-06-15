@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {
   StyleSheet,
@@ -11,6 +11,8 @@ import {
   Text,
 } from 'react-native';
 
+import {LocalizationContext} from '../../localization/LocalizationContext';
+
 import {Button, Icon, Layout, Spinner, Input} from '@ui-kitten/components';
 import Container from '../../components/Container';
 import TextInputField from '../../components/TextInputField';
@@ -22,6 +24,7 @@ import {doLogin} from '../../store/actions/auth';
 
 const LoginScreen = ({navigation}) => {
   const dispatch = useDispatch();
+  const {translations} = useContext(LocalizationContext);
 
   const isLoggingIn = useSelector(state => state.auth.isLoggingIn);
 
@@ -30,9 +33,9 @@ const LoginScreen = ({navigation}) => {
     state => state.auth.loginPasswordError,
   );
 
-  useEffect(() => {
-    // dispatch(resetAuth());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   // dispatch(resetAuth());
+  // }, [dispatch]);
 
   const [form, setForm] = useState({});
   const [email, setEmail] = useState('');
@@ -55,12 +58,12 @@ const LoginScreen = ({navigation}) => {
       </View>
 
       <View style={styles.screenTitle}>
-        <Text>Login to your account</Text>
+        <Text>{translations.LOGIN.TITLE}</Text>
       </View>
 
       <TextInputField
-        label="Email"
-        placeholder="Введите свой email"
+        label={translations.LOGIN.EMAIL_LABEL}
+        placeholder={translations.LOGIN.EMAIL_PLACEHOLDER}
         error={loginEmailInvalid}
         value={email}
         onChangeText={value => {
@@ -69,8 +72,8 @@ const LoginScreen = ({navigation}) => {
         }}
       />
       <PasswordTextInputField
-        label="Пароль"
-        placeholder="Введите свой пароль"
+        label={translations.LOGIN.PASSWORD_LABEL}
+        placeholder={translations.LOGIN.PASSWORD_PLACEHOLDER}
         error={loginPasswordInvalid}
         value={password}
         onChangeText={value => {
@@ -82,13 +85,15 @@ const LoginScreen = ({navigation}) => {
       <TouchableOpacity
         style={styles.forgotView}
         onPress={() => navigation.navigate('ResetPassword')}>
-        <Text style={styles.textStyle}>Забыли пароль?</Text>
+        <Text style={styles.textStyle}>
+          {translations.LOGIN.FORGOT_PASSWORD}
+        </Text>
       </TouchableOpacity>
 
       <LoaderButton
         loading={isLoggingIn}
         disabled={isLoggingIn}
-        text="Войти"
+        text={translations.LOGIN.LOGIN}
         onPress={() => loginUser()}
         customStyles={styles.actionBtn}
       />
@@ -96,13 +101,17 @@ const LoginScreen = ({navigation}) => {
       <TouchableOpacity
         style={[styles.centerView, {marginBottom: 25}]}
         onPress={() => navigation.navigate('Register')}>
-        <Text style={styles.textStyle}>Создать аккаунт</Text>
+        <Text style={styles.textStyle}>
+          {translations.LOGIN.GO_TO_REGISTER}
+        </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.centerView}
-        onPress={() => navigation.navigate('ChangeLanguage')}>
-        <Text style={styles.textStyle}>Сменить язык</Text>
+        onPress={() => navigation.navigate('Language')}>
+        <Text style={styles.textStyle}>
+          {translations.LOGIN.CHANGE_LANGUAGE}
+        </Text>
       </TouchableOpacity>
     </Container>
   );
