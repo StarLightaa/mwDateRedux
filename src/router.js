@@ -16,6 +16,7 @@ import TabBar from './components/TabBar';
 import WelcomeScreen from './screens/WelcomeScreen/WelcomeScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
+import ForgotPasswordScreen from './screens/ForgotPasswordScreen/ForgotPasswordScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import SearchScreen from './screens/SearchScreen/SearchScreen';
 import LanguageScreen from './screens/LanguageScreen/LanguageScreen';
@@ -66,6 +67,7 @@ const App = () => {
                 <Stack.Screen name="Welcome" component={WelcomeScreen} />
                 <Stack.Screen name="Login" component={LoginScreen} />
                 <Stack.Screen name="Register" component={RegisterScreen} />
+                <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
                 <Stack.Screen name="Language" component={LanguageScreen} />
                 {/* <Stack.Screen
                   name="ConfigureURL"

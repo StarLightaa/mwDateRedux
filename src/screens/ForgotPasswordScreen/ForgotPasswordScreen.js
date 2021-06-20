@@ -20,30 +20,16 @@ import PasswordTextInputField from '../../components/PasswordTextInputField';
 import LoaderButton from '../../components/LoaderButton';
 import * as Animatable from 'react-native-animatable';
 
-import {doLogin} from '../../store/actions/auth';
-
-const LoginScreen = ({navigation}) => {
+const ForgotPasswordScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const {translations} = useContext(LocalizationContext);
 
   const isLoggingIn = useSelector(state => state.auth.isLoggingIn);
 
   const loginEmailInvalid = useSelector(state => state.auth.loginEmailError);
-  const loginPasswordInvalid = useSelector(
-    state => state.auth.loginPasswordError,
-  );
-
-  // useEffect(() => {
-  //   // dispatch(resetAuth());
-  // }, [dispatch]);
 
   const [form, setForm] = useState({});
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const loginUser = async () => {
-    await dispatch(doLogin(form));
-  };
 
   return (
     <Container>
@@ -58,12 +44,12 @@ const LoginScreen = ({navigation}) => {
       </View>
 
       <View style={styles.screenTitle}>
-        <Text>{translations.LOGIN.TITLE}</Text>
+        <Text>{translations.RESTORE_PASSWORD.TITLE}</Text>
       </View>
 
       <TextInputField
-        label={translations.LOGIN.EMAIL_LABEL}
-        placeholder={translations.LOGIN.EMAIL_PLACEHOLDER}
+        label={translations.RESTORE_PASSWORD.EMAIL_LABEL}
+        placeholder={translations.RESTORE_PASSWORD.EMAIL_PLACEHOLDER}
         error={loginEmailInvalid}
         value={email}
         onChangeText={value => {
@@ -71,30 +57,12 @@ const LoginScreen = ({navigation}) => {
           setEmail(value);
         }}
       />
-      <PasswordTextInputField
-        label={translations.LOGIN.PASSWORD_LABEL}
-        placeholder={translations.LOGIN.PASSWORD_PLACEHOLDER}
-        error={loginPasswordInvalid}
-        value={password}
-        onChangeText={value => {
-          setForm({...form, ['password']: value});
-          setPassword(value);
-        }}
-      />
-
-      <TouchableOpacity
-        style={styles.forgotView}
-        onPress={() => navigation.navigate('ForgotPassword')}>
-        <Text style={styles.textStyle}>
-          {translations.LOGIN.FORGOT_PASSWORD}
-        </Text>
-      </TouchableOpacity>
 
       <LoaderButton
         loading={isLoggingIn}
         disabled={isLoggingIn}
-        text={translations.LOGIN.LOGIN}
-        onPress={() => loginUser()}
+        text={translations.RESTORE_PASSWORD.RESTORE}
+        onPress={() => console.log('TODO')}
         customStyles={styles.actionBtn}
       />
 
@@ -102,15 +70,7 @@ const LoginScreen = ({navigation}) => {
         style={[styles.centerView, {marginBottom: 25}]}
         onPress={() => navigation.navigate('Register')}>
         <Text style={styles.textStyle}>
-          {translations.LOGIN.GO_TO_REGISTER}
-        </Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={styles.centerView}
-        onPress={() => navigation.navigate('Language')}>
-        <Text style={styles.textStyle}>
-          {translations.LOGIN.CHANGE_LANGUAGE}
+          {translations.RESTORE_PASSWORD.GO_TO_LOGIN}
         </Text>
       </TouchableOpacity>
     </Container>
@@ -166,4 +126,5 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
 });
-export default LoginScreen;
+
+export default ForgotPasswordScreen;

@@ -47,7 +47,7 @@ export const doLogin = credentials => async dispatch => {
     const {data} = response.data;
     console.log('login response', data);
 
-    let token = data.token.access_token;
+    let token = data.token;
     let user = data.user;
     console.log('token', token);
     console.log('user', user);
@@ -69,14 +69,12 @@ export const doLogin = credentials => async dispatch => {
 
 export const onLogOut = () => async dispatch => {
   await APIHelper.post('auth/logout');
-  console.log('logout');
-  dispatch({type: SET_LOCALE, payload: 'en'});
   dispatch({type: USER_LOGOUT});
 };
 
 export const resetState = () => dispatch => {
   console.log('resetState');
-  dispatch({type: SET_LOCALE, payload: 'en'});
+  // dispatch({type: SET_LOCALE, payload: 'en'});
   dispatch({type: USER_LOGOUT});
 };
 

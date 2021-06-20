@@ -1,7 +1,10 @@
 import {SET_LOCALE, RESET_SETTINGS} from '../constants/actions';
 
+import strings from '../../localization/config';
+
+
 const initialState = {
-  localeValue: 'en',
+  localeValue: strings.getLanguage() ? strings.getLanguage() : 'en',
   isLocaleSet: false,
 };
 export default (state = initialState, action) => {

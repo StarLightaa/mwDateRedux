@@ -34,6 +34,12 @@ const RegisterScreen = ({navigation}) => {
   const registerLastNameInvalid = useSelector(
     state => state.auth.registerLastNameError,
   );
+  const registerLoginInvalid = useSelector(
+    state => state.auth.registerLoginError,
+  );
+  const registerNameInvalid = useSelector(
+    state => state.auth.registerNameError,
+  );
   const registerEmailInvalid = useSelector(
     state => state.auth.registerEmailError,
   );
@@ -47,6 +53,8 @@ const RegisterScreen = ({navigation}) => {
   const [form, setForm] = useState({});
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
+  const [login, setLogin] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password_confirmation, setPasswordConfirmation] = useState('');
@@ -75,23 +83,24 @@ const RegisterScreen = ({navigation}) => {
       </View>
 
       <TextInputField
-        label={translations.REGISTER.FIRSTNAME_LABEL}
-        placeholder={translations.REGISTER.FIRSTNAME_PLACEHOLDER}
-        error={registerFirstnameInvalid}
-        value={firstname}
+        label={translations.REGISTER.LOGIN_LABEL}
+        placeholder={translations.REGISTER.LOGIN_PLACEHOLDER}
+        error={registerLoginInvalid}
+        value={login}
         onChangeText={value => {
-          setForm({...form, ['firstname']: value});
-          setFirstname(value);
+          setForm({...form, ['login']: value});
+          setLogin(value);
         }}
       />
+
       <TextInputField
-        label={translations.REGISTER.LASTNAME_LABEL}
-        placeholder={translations.REGISTER.LASTNAME_PLACEHOLDER}
-        error={registerLastNameInvalid}
-        value={lastname}
+        label={translations.REGISTER.NAME_LABEL}
+        placeholder={translations.REGISTER.NAME_PLACEHOLDER}
+        error={registerNameInvalid}
+        value={name}
         onChangeText={value => {
-          setForm({...form, ['lastname']: value});
-          setLastname(value);
+          setForm({...form, ['name']: value});
+          setName(value);
         }}
       />
 
@@ -125,14 +134,6 @@ const RegisterScreen = ({navigation}) => {
           setPasswordConfirmation(value);
         }}
       />
-
-      <TouchableOpacity
-        style={styles.forgotView}
-        onPress={() => navigation.navigate('ResetPassword')}>
-        <Text style={styles.textStyle}>
-          {translations.REGISTER.FORGOT_PASSWORD}
-        </Text>
-      </TouchableOpacity>
 
       <LoaderButton
         loading={isRegistering}

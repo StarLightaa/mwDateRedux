@@ -12,6 +12,8 @@ export const initialState = {
   isRegistering: false,
   registerFirstnameError: null,
   registerLastNameError: null,
+  registerLoginError: null,
+  registerNameError: null,
   registerEmailError: null,
   registerPasswordError: null,
   registerPasswordConfirmationError: null,
@@ -80,6 +82,8 @@ export default (state = initialState, action) => {
       console.log('payload', action.payload);
       let firstnameError = null;
       let lastnameError = null;
+      let loginError = null;
+      let nameError = null;
       let emailError = null;
       let password = null;
       let passwordConfirmation = null;
@@ -89,6 +93,8 @@ export default (state = initialState, action) => {
       if (validateErrors) {
         firstnameError = validateErrors.firstname;
         lastnameError = validateErrors.lastname;
+        loginError = validateErrors.login;
+        nameError = validateErrors.name;
         emailError = validateErrors.email;
         password = validateErrors.password;
       }
@@ -97,6 +103,8 @@ export default (state = initialState, action) => {
         isRegistering: false,
         registerFirstnameError: firstnameError,
         registerLastNameError: lastnameError,
+        registerLoginError: loginError,
+        registerNameError: nameError,
         registerEmailError: emailError,
         registerPasswordError: password,
         registerPasswordConfirmationError: null,

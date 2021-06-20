@@ -2,14 +2,14 @@ export default {
   WELCOME: 'Welcome',
 
   LOGIN: {
-    TITLE: 'Login to your account',
+    TITLE: 'Sign in with account',
     EMAIL_LABEL: 'Email',
-    EMAIL_PLACEHOLDER: 'Enter your email',
+    EMAIL_PLACEHOLDER: 'Your email',
     PASSWORD_LABEL: 'Password',
-    PASSWORD_PLACEHOLDER: 'Enter your password',
+    PASSWORD_PLACEHOLDER: 'Your password',
     FORGOT_PASSWORD: 'Forgot your password?',
     LOGIN: 'Sign in',
-    GO_TO_REGISTER: 'Create new account',
+    GO_TO_REGISTER: 'Sign up',
     CHANGE_LANGUAGE: 'Change language',
   },
 
@@ -19,10 +19,14 @@ export default {
     FIRSTNAME_PLACEHOLDER: 'Enter your firstname',
     LASTNAME_LABEL: 'Lastname',
     LASTNAME_PLACEHOLDER: 'Enter your lastname',
+    LOGIN_LABEL: 'Login',
+    LOGIN_PLACEHOLDER: 'Your login',
+    NAME_LABEL: 'Name',
+    NAME_PLACEHOLDER: 'Your name',
     EMAIL_LABEL: 'Email',
-    EMAIL_PLACEHOLDER: 'Enter your email',
+    EMAIL_PLACEHOLDER: 'Your email',
     PASSWORD_LABEL: 'Password',
-    PASSWORD_PLACEHOLDER: 'Enter your password',
+    PASSWORD_PLACEHOLDER: 'Your password',
     CONFIRM_PASSWORD_LABEL: 'Password confirmation',
     CONFIRM_PASSWORD_PLACEHOLDER: 'Please confirm your password',
     FORGOT_PASSWORD: 'Forgot your password?',
@@ -30,6 +34,14 @@ export default {
     NO_ACCOUNT: "Don't have an account?",
     GO_TO_LOGIN: 'Go to sign in',
     CHANGE_LANGUAGE: 'Change language',
+  },
+
+  RESTORE_PASSWORD: {
+    TITLE: 'Restore account',
+    EMAIL_LABEL: 'Email',
+    EMAIL_PLACEHOLDER: 'Your email',
+    RESTORE: 'Restore account',
+    GO_TO_LOGIN: 'Go to sign in',
   },
 
   SETTINGS: {
