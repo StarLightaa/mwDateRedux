@@ -2,6 +2,7 @@ import APIHelper from '../../helpers/APIHelper';
 import {showToast} from '../../helpers/ToastHelper';
 
 import {
+  CLEAR_VALIDATION,
   LOGIN,
   LOGIN_ERROR,
   LOGIN_SUCCESS,
@@ -12,6 +13,10 @@ import {
   REFRESH_TOKEN,
   SET_LOCALE,
 } from '../constants/actions';
+
+export const clearValidation = () => dispatch => {
+  dispatch({type: CLEAR_VALIDATION});
+};
 
 export const doRegister = credentials => async dispatch => {
   console.log('credentials', credentials);

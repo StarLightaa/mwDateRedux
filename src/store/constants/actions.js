@@ -4,6 +4,8 @@ export const SET_URL = 'SET_URL';
 export const SET_URL_SUCCESS = 'SET_URL_SUCCESS';
 export const SET_URL_ERROR = 'SET_URL_ERROR';
 
+export const CLEAR_VALIDATION = 'CLEAR_VALIDATION';
+
 export const REGISTER = 'REGISTER';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_ERROR = 'REGISTER_ERROR';

@@ -1,5 +1,6 @@
 import React, {useState, useContext} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import { useFocusEffect } from '@react-navigation/native';
 import {
   StyleSheet,
   View,
@@ -20,7 +21,7 @@ import PasswordTextInputField from '../../components/PasswordTextInputField';
 import LoaderButton from '../../components/LoaderButton';
 import * as Animatable from 'react-native-animatable';
 
-import {doRegister} from '../../store/actions/auth';
+import {doRegister, clearValidation} from '../../store/actions/auth';
 
 const RegisterScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -65,6 +66,12 @@ const RegisterScreen = ({navigation}) => {
       navigation.navigate('Login');
     }
   };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(clearValidation());
+    }, [])
+  );
 
   return (
     <Container>

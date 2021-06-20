@@ -1,4 +1,5 @@
 import {
+  CLEAR_VALIDATION,
   LOGIN,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
@@ -34,6 +35,20 @@ export const initialState = {
 export default (state = initialState, action) => {
   console.log('action', action);
   switch (action.type) {
+    case CLEAR_VALIDATION:
+      return {
+        ...state,
+        registerFirstnameError: null,
+        registerLastNameError: null,
+        registerLoginError: null,
+        registerNameError: null,
+        registerEmailError: null,
+        registerPasswordError: null,
+        registerPasswordConfirmationError: null,
+        loginEmailError: null,
+        loginPasswordError: null,
+      };
+
     case LOGIN:
       return {...state, isLoggingIn: true};
 

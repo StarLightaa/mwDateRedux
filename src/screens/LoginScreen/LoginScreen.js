@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import { useFocusEffect } from '@react-navigation/native';
 import {
   StyleSheet,
   View,
@@ -20,7 +21,7 @@ import PasswordTextInputField from '../../components/PasswordTextInputField';
 import LoaderButton from '../../components/LoaderButton';
 import * as Animatable from 'react-native-animatable';
 
-import {doLogin} from '../../store/actions/auth';
+import {doLogin, clearValidation} from '../../store/actions/auth';
 
 const LoginScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -31,6 +32,12 @@ const LoginScreen = ({navigation}) => {
   const loginEmailInvalid = useSelector(state => state.auth.loginEmailError);
   const loginPasswordInvalid = useSelector(
     state => state.auth.loginPasswordError,
+  );
+
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(clearValidation());
+    }, [])
   );
 
   // useEffect(() => {

@@ -6,6 +6,7 @@ export const getHeaders = async () => {
     return {
       'Content-Type': 'application/json',
       Accept: 'application/json',
+      'Content-Language': state.settings.localeValue ? state.settings.localeValue : 'en',
       Authorization: 'Bearer ' + state.auth.accessToken,
     };
   } catch (error) {}
