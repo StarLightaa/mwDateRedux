@@ -5,7 +5,7 @@ import {getBaseUrl} from './UrlHelper';
 import {showToast} from './ToastHelper';
 
 import {store} from '../store';
-import {resetState} from '../store/actions/auth';
+import {resetState, resetLoaders} from '../store/actions/auth';
 
 const parseErrorCode = error => {
   if (error.response) {
@@ -16,6 +16,7 @@ const parseErrorCode = error => {
       showToast({message});
     }
   } else {
+    store.dispatch(resetLoaders());
     showToast({message: 'Ошибка при отправке запроса'});
   }
   return Promise.reject(error.response);

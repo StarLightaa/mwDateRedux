@@ -2,6 +2,7 @@ import APIHelper from '../../helpers/APIHelper';
 import {showToast} from '../../helpers/ToastHelper';
 
 import {
+  RESET_LOADERS,
   CLEAR_VALIDATION,
   LOGIN,
   LOGIN_ERROR,
@@ -13,6 +14,10 @@ import {
   REFRESH_TOKEN,
   SET_LOCALE,
 } from '../constants/actions';
+
+export const resetLoaders = () => dispatch => {
+  dispatch({type: RESET_LOADERS});
+};
 
 export const clearValidation = () => dispatch => {
   dispatch({type: CLEAR_VALIDATION});

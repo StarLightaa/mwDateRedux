@@ -1,4 +1,5 @@
 import {
+  RESET_LOADERS,
   CLEAR_VALIDATION,
   LOGIN,
   LOGIN_SUCCESS,
@@ -27,7 +28,7 @@ export const initialState = {
   user: null,
   accessToken: null,
   isResettingPassword: false,
-  isUpdating: true,
+  isUpdating: false,
   error: {},
   success: {},
 };
@@ -35,6 +36,15 @@ export const initialState = {
 export default (state = initialState, action) => {
   console.log('action', action);
   switch (action.type) {
+    case RESET_LOADERS:
+      return {
+        ...state,
+        isRegistering: false,
+        isLoggingIn: false,
+        isLoggedIn: false,
+        isResettingPassword: false,
+        isUpdating: false,
+      };
     case CLEAR_VALIDATION:
       return {
         ...state,
