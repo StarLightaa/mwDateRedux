@@ -8,6 +8,9 @@ import {
   REGISTER_SUCCESS,
   REGISTER_ERROR,
   REFRESH_TOKEN,
+  UPDATE_USER,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR
 } from '../constants/actions';
 
 export const initialState = {
@@ -25,6 +28,7 @@ export const initialState = {
   loginPasswordError: null,
 
   isLoggedIn: false,
+  isEditing: false,
   user: null,
   accessToken: null,
   isResettingPassword: false,
@@ -140,6 +144,18 @@ export default (state = initialState, action) => {
       return {
         ...state,
         accessToken: action.payload.token,
+      };
+
+    case UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        isEditing: false,
+        user: action.payload.user,
+      };
+    case UPDATE_USER_ERROR:
+      return {
+        ...state,
+        isEditing: false,
       };
     default:
       return state;

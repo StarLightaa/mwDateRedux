@@ -33,6 +33,7 @@ const SearchStack = () => (
 const ProfileStack = () => (
   <Stack.Navigator initialRouteName="Profile" headerMode="none">
     <Stack.Screen name="Profile" component={ProfileScreen} />
+    <Stack.Screen name="Language" component={LanguageScreen} />
   </Stack.Navigator>
 );
 

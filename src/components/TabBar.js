@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   BottomNavigation,
   BottomNavigationTab,
@@ -8,10 +8,14 @@ import {
 import {useSelector} from 'react-redux';
 import {StyleSheet, View, Text} from 'react-native';
 
-const ConversationIcon = style => <Icon {...style} name="message-circle" />;
+import {LocalizationContext} from '../localization/LocalizationContext';
+
+const SearchIcon = style => <Icon {...style} name="search" />;
+const ProfileIcon = style => <Icon {...style} name="person" />;
 const SettingsIcon = style => <Icon {...style} name="settings" />;
 
 const TabBarComponent = ({eva, navigation, state}) => {
+  const {translations} = useContext(LocalizationContext);
   const changeTab = index => {
     const selectedTabRoute = state.routes[index];
     navigation.navigate(selectedTabRoute.name);
@@ -25,8 +29,8 @@ const TabBarComponent = ({eva, navigation, state}) => {
       onSelect={changeTab}
       appearance="noIndicator"
       style={styles.tabBar}>
-      <BottomNavigationTab title="Search" icon={ConversationIcon} />
-      <BottomNavigationTab title="Profile" icon={SettingsIcon} />
+      <BottomNavigationTab title={translations.BOTTOM_TABS.SEARCH} icon={SearchIcon} />
+      <BottomNavigationTab title={translations.BOTTOM_TABS.PROFILE} icon={ProfileIcon} />
     </BottomNavigation>
   );
 };

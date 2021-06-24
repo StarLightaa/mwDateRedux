@@ -55,4 +55,27 @@ export default {
     CANCEL: 'Cancel',
     OK: 'Ok',
   },
+
+  MODAL: {
+    CANCEL: 'Cancel',
+    SAVE: 'Save',
+    OK: 'Ok',
+  },
+
+  BOTTOM_TABS: {
+    SEARCH: 'Search',
+    PROFILE: 'Profile',
+  },
+
+  PROFILE: {
+    HEADER_TITLE: 'Profile settings',
+    CHANGE_NAME: 'Change name',
+    CHANGE_EMAIL: 'Change email',
+    CHANGE_LANGUAGE: 'Change language',
+    MODAL_TITLE_NAME: 'Name',
+    MODAL_PLACEHOLDER_NAME: 'Your name',
+    MODAL_TITLE_EMAIL: 'Email',
+    MODAL_PLACEHOLDER_EMAIL: 'Your email',
+    LOGOUT: 'Logout',
+  },
 };

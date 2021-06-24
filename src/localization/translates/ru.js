@@ -55,4 +55,27 @@ export default {
     CANCEL: 'Отмена',
     OK: 'Ок',
   },
+
+  MODAL: {
+    CANCEL: 'Отменить',
+    SAVE: 'Сохранить',
+    OK: 'Ок',
+  },
+
+  BOTTOM_TABS: {
+    SEARCH: 'Поиск',
+    PROFILE: 'Профиль',
+  },
+
+  PROFILE: {
+    HEADER_TITLE: 'Настройки профиля',
+    CHANGE_NAME: 'Сменить имя',
+    CHANGE_EMAIL: 'Сменить почтовый адрес',
+    CHANGE_LANGUAGE: 'Сменить язык',
+    MODAL_TITLE_NAME: 'Имя',
+    MODAL_PLACEHOLDER_NAME: 'Ваше имя',
+    MODAL_TITLE_EMAIL: 'Почтовый адрес',
+    MODAL_PLACEHOLDER_EMAIL: 'Ваш email',
+    LOGOUT: 'Выйти',
+  },
 };

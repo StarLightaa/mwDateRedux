@@ -13,6 +13,8 @@ import {
   REGISTER_ERROR,
   REFRESH_TOKEN,
   SET_LOCALE,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR,
 } from '../constants/actions';
 
 export const resetLoaders = () => dispatch => {
@@ -106,6 +108,22 @@ export const userProfile = () => async dispatch => {
     }
     showToast({message: 'user-profile Ошибка авторизации' + error.status});
     console.log('doLogin error', error);
+    return false;
+  }
+};
+
+export const updateUser = (user_id, credentials) => async dispatch => {
+  try {
+    const response = await APIHelper.put(`user/${user_id}`, credentials);
+    const {data} = response.data;
+
+    let user = data.user;
+    showToast({message: 'user-profile Почта пользователя' + user.email});
+    dispatch({type: UPDATE_USER_SUCCESS, payload: {user}});
+    return true;
+  } catch (error) {
+    showToast({message: 'user-update Ошибка обновления' + error.status});
+    dispatch({type: UPDATE_USER_ERROR, payload: error});
     return false;
   }
 };

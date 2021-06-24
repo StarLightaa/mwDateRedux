@@ -17,6 +17,8 @@ export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const SET_AUTH_HEADER = 'SET_AUTH_HEADER';
 
 export const UPDATE_USER = 'UPDATE_USER';
+export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
+export const UPDATE_USER_ERROR = 'UPDATE_USER_ERROR';
 
 export const GET_INBOX = 'GET_INBOX';
 export const GET_INBOX_SUCCESS = 'GET_INBOX_SUCCESS';
