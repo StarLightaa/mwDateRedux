@@ -42,6 +42,15 @@ export default {
     EMAIL_PLACEHOLDER: 'Ваш почтовый адрес',
     RESTORE: 'Восстановить аккаунт',
     GO_TO_LOGIN: 'Войти в аккаунт',
+    HEADER_TITLE: 'Смена пароля',
+    CURRENT_PASSWORD_LABEL: 'Текущий пароль',
+    CURRENT_PASSWORD_PLACEHOLDER: 'Ваше текущий пароль',
+    NEW_PASSWORD_LABEL: 'Новый пароль',
+    NEW_PASSWORD_PLACEHOLDER: 'Введите новый пароль',
+    NEW_PASSWORD_CONFIRM_LABEL: 'Подтверждение пароля',
+    NEW_PASSWORD_CONFIRM_PLACEHOLDER: 'Повторите пароль пожалуйста',
+    FORGOT_PASSWORD: 'Забыли пароль?',
+    CHANGE_PASSWORD_BTN: 'Сменить пароль',
   },
 
   SETTINGS: {
@@ -71,6 +80,7 @@ export default {
     HEADER_TITLE: 'Настройки профиля',
     CHANGE_NAME: 'Сменить имя',
     CHANGE_EMAIL: 'Сменить почтовый адрес',
+    CHANGE_PASSWORD: 'Сменить пароль',
     CHANGE_LANGUAGE: 'Сменить язык',
     MODAL_TITLE_NAME: 'Имя',
     MODAL_PLACEHOLDER_NAME: 'Ваше имя',

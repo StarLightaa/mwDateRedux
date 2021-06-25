@@ -42,6 +42,15 @@ export default {
     EMAIL_PLACEHOLDER: 'Your email',
     RESTORE: 'Restore account',
     GO_TO_LOGIN: 'Go to sign in',
+    HEADER_TITLE: 'Change password',
+    CURRENT_PASSWORD_LABEL: 'Current password',
+    CURRENT_PASSWORD_PLACEHOLDER: 'Your current password',
+    NEW_PASSWORD_LABEL: 'New password',
+    NEW_PASSWORD_PLACEHOLDER: 'Your new password',
+    NEW_PASSWORD_CONFIRM_LABEL: 'Password confirmation',
+    NEW_PASSWORD_CONFIRM_PLACEHOLDER: 'Please confirm your password',
+    FORGOT_PASSWORD: 'Forgot your password?',
+    CHANGE_PASSWORD_BTN: 'Change password',
   },
 
   SETTINGS: {
@@ -71,6 +80,7 @@ export default {
     HEADER_TITLE: 'Profile settings',
     CHANGE_NAME: 'Change name',
     CHANGE_EMAIL: 'Change email',
+    CHANGE_PASSWORD: 'Change password',
     CHANGE_LANGUAGE: 'Change language',
     MODAL_TITLE_NAME: 'Name',
     MODAL_PLACEHOLDER_NAME: 'Your name',

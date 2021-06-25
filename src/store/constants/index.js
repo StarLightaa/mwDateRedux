@@ -16,6 +16,11 @@ export const PROFILE_ITEMS = [
     itemName: 'email',
   },
   {
+    text: 'CHANGE_PASSWORD',
+    iconName: 'chevron-right-outline',
+    itemName: 'password',
+  },
+  {
     text: 'CHANGE_LANGUAGE',
     checked: true,
     iconName: 'globe-outline',

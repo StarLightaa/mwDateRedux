@@ -47,6 +47,10 @@ const ProfileScreen = ({navigation}) => {
         setModalEmailVisible(true);
         break;
 
+      case 'password':
+        navigation.navigate('ResetPassword');
+        break;
+
       case 'language':
         navigation.navigate('Language');
         break;
@@ -92,7 +96,7 @@ const ProfileScreen = ({navigation}) => {
           setInputValue={setInputName}
           prevState={name}
           inputPlaceholder={translations.PROFILE.MODAL_PLACEHOLDER_NAME}
-          onSuccess={updateUser(user.id, {
+          onSuccess={updateUser({
             name: inputName,
           })}
         />

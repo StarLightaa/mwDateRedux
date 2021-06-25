@@ -10,7 +10,10 @@ import {
   REFRESH_TOKEN,
   UPDATE_USER,
   UPDATE_USER_SUCCESS,
-  UPDATE_USER_ERROR
+  UPDATE_USER_ERROR,
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_SUCCESS,
+  CHANGE_PASSWORD_ERROR,
 } from '../constants/actions';
 
 export const initialState = {
@@ -26,6 +29,10 @@ export const initialState = {
   isLoggingIn: false,
   loginEmailError: null,
   loginPasswordError: null,
+
+  changePasswordCurrentPasswordError: null,
+  changePasswordNewPasswordError: null,
+  changePasswordPasswordConfirmError: null,
 
   isLoggedIn: false,
   isEditing: false,
@@ -48,6 +55,7 @@ export default (state = initialState, action) => {
         isLoggedIn: false,
         isResettingPassword: false,
         isUpdating: false,
+        isChangingPassword: false,
       };
     case CLEAR_VALIDATION:
       return {
@@ -61,6 +69,9 @@ export default (state = initialState, action) => {
         registerPasswordConfirmationError: null,
         loginEmailError: null,
         loginPasswordError: null,
+        changePasswordCurrentPasswordError: null,
+        changePasswordNewPasswordError: null,
+        changePasswordPasswordConfirmError: null,
       };
 
     case LOGIN:
@@ -157,6 +168,36 @@ export default (state = initialState, action) => {
         ...state,
         isEditing: false,
       };
+
+    case CHANGE_PASSWORD:
+      return {...state, isChangingPassword: true};
+
+    case CHANGE_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        isChangingPassword: false,
+      };
+
+    case CHANGE_PASSWORD_ERROR:
+      let currentPasswordError = null;
+      let newPasswordError = null;
+      let passwordConfirmError = null;
+
+      let validateChangePasswordErrors = action.payload.data.error;
+      console.log('validateChangePasswordErrors', validateChangePasswordErrors);
+      if (validateChangePasswordErrors) {
+        currentPasswordError = validateChangePasswordErrors.current_password;
+        newPasswordError = validateChangePasswordErrors.new_password;
+        passwordConfirmError = validateChangePasswordErrors.password_confirm;
+      }
+      return {
+        ...state,
+        isChangingPassword: false,
+        changePasswordCurrentPasswordError: currentPasswordError,
+        changePasswordNewPasswordError: newPasswordError,
+        changePasswordPasswordConfirmError: passwordConfirmError,
+      };
+
     default:
       return state;
   }

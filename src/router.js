@@ -17,6 +17,7 @@ import WelcomeScreen from './screens/WelcomeScreen/WelcomeScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen/ForgotPasswordScreen';
+import ResetPasswordScreen from './screens/ResetPasswordScreen/ResetPasswordScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import SearchScreen from './screens/SearchScreen/SearchScreen';
 import LanguageScreen from './screens/LanguageScreen/LanguageScreen';
@@ -33,6 +34,8 @@ const SearchStack = () => (
 const ProfileStack = () => (
   <Stack.Navigator initialRouteName="Profile" headerMode="none">
     <Stack.Screen name="Profile" component={ProfileScreen} />
+    <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
+    <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
     <Stack.Screen name="Language" component={LanguageScreen} />
   </Stack.Navigator>
 );

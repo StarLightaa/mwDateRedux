@@ -13,14 +13,10 @@ import {
 
 const SearchScreen = ({navigation}) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex:1, justifyContent:'flex-end', alignItems: 'center'}}>
       <ScrollView>
         <View>
-          <Text>Search Screen</Text>
-          <Button
-            title="profile"
-            onPress={() => navigation.navigate('Profile')}
-          />
+          <Text>В процессе разработки :)</Text>
         </View>
       </ScrollView>
     </SafeAreaView>

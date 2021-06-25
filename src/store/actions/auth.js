@@ -15,6 +15,9 @@ import {
   SET_LOCALE,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_ERROR,
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_SUCCESS,
+  CHANGE_PASSWORD_ERROR,
 } from '../constants/actions';
 
 export const resetLoaders = () => dispatch => {
@@ -112,9 +115,9 @@ export const userProfile = () => async dispatch => {
   }
 };
 
-export const updateUser = (user_id, credentials) => async dispatch => {
+export const updateUser = (credentials) => async dispatch => {
   try {
-    const response = await APIHelper.put(`user/${user_id}`, credentials);
+    const response = await APIHelper.put(`user`, credentials);
     const {data} = response.data;
 
     let user = data.user;
@@ -124,6 +127,25 @@ export const updateUser = (user_id, credentials) => async dispatch => {
   } catch (error) {
     showToast({message: 'user-update Ошибка обновления' + error.status});
     dispatch({type: UPDATE_USER_ERROR, payload: error});
+    return false;
+  }
+};
+
+export const updatePassword = credentials => async dispatch => {
+  console.log('credentials', credentials);
+  try {
+    dispatch({type: CHANGE_PASSWORD});
+    const response = await APIHelper.post(
+      'auth/reset-password/by-old-password',
+      credentials,
+    );
+
+    showToast({message: 'Пароль изменен успешно'});
+    dispatch({type: CHANGE_PASSWORD_SUCCESS});
+    return true;
+  } catch (error) {
+    showToast({message: 'Ошибка смены пароля' + error.status});
+    dispatch({type: CHANGE_PASSWORD_ERROR, payload: error});
     return false;
   }
 };
