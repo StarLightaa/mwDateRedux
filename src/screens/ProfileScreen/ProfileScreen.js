@@ -55,6 +55,10 @@ const ProfileScreen = ({navigation}) => {
         navigation.navigate('Language');
         break;
 
+      case 'birthday':
+        navigation.navigate('Birthday');
+        break;
+
       case 'logout':
         dispatch(onLogOut());
         break;
@@ -108,7 +112,7 @@ const ProfileScreen = ({navigation}) => {
           setInputValue={setInputEmail}
           prevState={email}
           inputPlaceholder={translations.PROFILE.MODAL_PLACEHOLDER_NAME}
-          onSuccess={updateUser(user.id, {
+          onSuccess={updateUser({
             email: inputEmail,
           })}
         />

@@ -19,6 +19,7 @@ import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen/ForgotPasswordScreen';
 import ResetPasswordScreen from './screens/ResetPasswordScreen/ResetPasswordScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
+import BirthdayScreen from './screens/ProfileScreen/screens/BirthdayScreen';
 import SearchScreen from './screens/SearchScreen/SearchScreen';
 import LanguageScreen from './screens/LanguageScreen/LanguageScreen';
 
@@ -37,6 +38,7 @@ const ProfileStack = () => (
     <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
     <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
     <Stack.Screen name="Language" component={LanguageScreen} />
+    <Stack.Screen name="Birthday" component={BirthdayScreen} />
   </Stack.Navigator>
 );
 

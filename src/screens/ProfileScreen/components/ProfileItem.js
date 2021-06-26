@@ -22,10 +22,11 @@ const ProfileItem = ({
           <Text style={styles.sectionValue}>{value}</Text>
           <Icon
             name={iconName}
-            fill="blue"
+            fill="#E5ABA9"
             //   fill={theme['color-primary-default']}
             width={26}
             height={26}
+            style={styles.sectionIcon}
           />
         </View>
       </TouchableOpacity>
@@ -55,4 +56,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  sectionIcon: {
+    marginLeft: 15
+  }
 });

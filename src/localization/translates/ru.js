@@ -82,10 +82,16 @@ export default {
     CHANGE_EMAIL: 'Сменить почтовый адрес',
     CHANGE_PASSWORD: 'Сменить пароль',
     CHANGE_LANGUAGE: 'Сменить язык',
+    CHANGE_DATE_BIRTH: 'Дата рождения',
     MODAL_TITLE_NAME: 'Имя',
     MODAL_PLACEHOLDER_NAME: 'Ваше имя',
     MODAL_TITLE_EMAIL: 'Почтовый адрес',
     MODAL_PLACEHOLDER_EMAIL: 'Ваш email',
     LOGOUT: 'Выйти',
+  },
+
+  BIRTHDAY: {
+    HEADER_TITLE: 'Смена дня рождения',
+    SAVE_BTN: 'Сохранить'
   },
 };
