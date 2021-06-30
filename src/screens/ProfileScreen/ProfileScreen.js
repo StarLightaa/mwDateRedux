@@ -48,7 +48,7 @@ const ProfileScreen = ({navigation}) => {
         break;
 
       case 'password':
-        navigation.navigate('ResetPassword');
+        navigation.navigate('ResetPasswordByOldPassword');
         break;
 
       case 'language':

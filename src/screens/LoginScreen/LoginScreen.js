@@ -52,6 +52,13 @@ const LoginScreen = ({navigation}) => {
     await dispatch(doLogin(form));
   };
 
+  const isDisabled = () => {
+    if (email.trim().length < 1 || password.trim().length < 1) {
+      return true
+    }
+    return false;
+  };
+
   return (
     <Container>
       <View style={styles.logoWrapper}>
@@ -99,7 +106,7 @@ const LoginScreen = ({navigation}) => {
 
       <LoaderButton
         loading={isLoggingIn}
-        disabled={isLoggingIn}
+        disabled={isLoggingIn || isDisabled()}
         text={translations.LOGIN.LOGIN}
         onPress={() => loginUser()}
         customStyles={styles.actionBtn}

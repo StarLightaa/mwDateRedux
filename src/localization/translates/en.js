@@ -37,12 +37,16 @@ export default {
   },
 
   RESTORE_PASSWORD: {
-    TITLE: 'Restore account',
+    TITLE: 'Search account',
+    DESCRIPTION: 'Enter your email address associated with your account',
+    MAIL_SENDED: 'An email was sent to the address associated with your account message. Check your email to continue.',
     EMAIL_LABEL: 'Email',
     EMAIL_PLACEHOLDER: 'Your email',
     RESTORE: 'Restore account',
+    SEND_MAIL: 'Send',
     GO_TO_LOGIN: 'Go to sign in',
     HEADER_TITLE: 'Change password',
+    RESET_HEADER_TITLE: 'Reset password',
     CURRENT_PASSWORD_LABEL: 'Current password',
     CURRENT_PASSWORD_PLACEHOLDER: 'Your current password',
     NEW_PASSWORD_LABEL: 'New password',
@@ -51,6 +55,7 @@ export default {
     NEW_PASSWORD_CONFIRM_PLACEHOLDER: 'Please confirm your password',
     FORGOT_PASSWORD: 'Forgot your password?',
     CHANGE_PASSWORD_BTN: 'Change password',
+    RESET_PASSWORD_BTN: 'Save',
   },
 
   SETTINGS: {
@@ -92,6 +97,6 @@ export default {
 
   BIRTHDAY: {
     HEADER_TITLE: 'Смена дня рождения',
-    SAVE_BTN: 'Сохранить'
+    SAVE_BTN: 'Сохранить',
   },
 };

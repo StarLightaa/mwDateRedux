@@ -22,9 +22,14 @@ import PasswordTextInputField from '../../components/PasswordTextInputField';
 import LoaderButton from '../../components/LoaderButton';
 import * as Animatable from 'react-native-animatable';
 
-import {updatePassword, clearValidation} from '../../store/actions/auth';
+import {
+  updatePasswordByEmail,
+  clearValidation,
+  clearResetMail,
+  doLogin,
+} from '../../store/actions/auth';
 
-const ResetPasswordScreen = ({navigation}) => {
+const ResetPasswordScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const {translations} = useContext(LocalizationContext);
 
@@ -41,25 +46,62 @@ const ResetPasswordScreen = ({navigation}) => {
     state => state.auth.changePasswordPasswordConfirmError,
   );
 
-  const [form, setForm] = useState({});
-  const [oldPassword, setOldPassword] = useState('');
+  const resetMail = useSelector(state => state.auth.resetMail);
+
+  const resetPasswordToken = useSelector(
+    state => state.auth.resetPasswordToken,
+  );
+
+  const user = useSelector(state => state.auth.user);
+
+  const [form, setForm] = useState({
+    reset_token: resetPasswordToken,
+    email: resetMail,
+  });
   const [newPassword, setNewPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
 
   useFocusEffect(
     React.useCallback(() => {
+      setForm({
+        ...form,
+        ['email']: route.params.email,
+        ['reset_token']: route.params.token,
+      });
       dispatch(clearValidation());
     }, []),
   );
 
   const goBack = () => {
-    navigation.goBack();
+    navigation.navigate('Login');
+  };
+
+  const goNext = () => {
+    if (user) {
+      navigation.navigate('Profile');
+    } else {
+      navigation.navigate('Login');
+    }
+  };
+
+  const isDisabled = () => {
+    if (newPassword.trim().length < 1 || passwordConfirm.trim().length < 1) {
+      return true
+    }
+    return false;
+  };
+
+  const clearMail = () => {
+    dispatch(clearValidation());
+    dispatch(clearResetMail(resetMail));
+    navigation.navigate('ForgotPassword');
   };
 
   const changePassword = async () => {
-    const success = await dispatch(updatePassword(form));
+    const success = await dispatch(updatePasswordByEmail(form));
     if (success) {
-      goBack();
+      dispatch(doLogin(form));
+      goNext();
     }
   };
 
@@ -71,31 +113,18 @@ const ResetPasswordScreen = ({navigation}) => {
         onBackPress={goBack}
       />
       <Container>
-        <TextInputField
-          label={translations.RESTORE_PASSWORD.CURRENT_PASSWORD_LABEL}
-          placeholder={
-            translations.RESTORE_PASSWORD.CURRENT_PASSWORD_PLACEHOLDER
-          }
-          error={changePasswordCurrentPasswordInvalid}
-          value={oldPassword}
-          onChangeText={value => {
-            setForm({...form, ['current_password']: value});
-            setOldPassword(value);
-          }}
-        />
-
-        <TextInputField
+        <PasswordTextInputField
           label={translations.RESTORE_PASSWORD.NEW_PASSWORD_LABEL}
           placeholder={translations.RESTORE_PASSWORD.NEW_PASSWORD_PLACEHOLDER}
           error={changePasswordNewPasswordInvalid}
           value={newPassword}
           onChangeText={value => {
-            setForm({...form, ['new_password']: value});
+            setForm({...form, ['new_password']: value, ['password']: value});
             setNewPassword(value);
           }}
         />
 
-        <TextInputField
+        <PasswordTextInputField
           label={translations.RESTORE_PASSWORD.NEW_PASSWORD_CONFIRM_LABEL}
           placeholder={
             translations.RESTORE_PASSWORD.NEW_PASSWORD_CONFIRM_PLACEHOLDER
@@ -110,19 +139,11 @@ const ResetPasswordScreen = ({navigation}) => {
 
         <LoaderButton
           loading={isChangingPassword}
-          disabled={isChangingPassword}
-          text={translations.RESTORE_PASSWORD.CHANGE_PASSWORD_BTN}
+          disabled={isChangingPassword || isDisabled()}
+          text={translations.RESTORE_PASSWORD.RESET_PASSWORD_BTN}
           onPress={() => changePassword()}
           customStyles={styles.actionBtn}
         />
-
-        <TouchableOpacity
-          style={[styles.centerView, {marginBottom: 25}]}
-          onPress={() => navigation.navigate('ForgotPassword')}>
-          <Text style={styles.textStyle}>
-            {translations.RESTORE_PASSWORD.FORGOT_PASSWORD}
-          </Text>
-        </TouchableOpacity>
       </Container>
     </SafeAreaView>
   );

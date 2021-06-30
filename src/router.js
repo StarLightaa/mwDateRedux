@@ -17,7 +17,8 @@ import WelcomeScreen from './screens/WelcomeScreen/WelcomeScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen/ForgotPasswordScreen';
-import ResetPasswordScreen from './screens/ResetPasswordScreen/ResetPasswordScreen';
+import ResetPasswordByEmail from './screens/ResetPasswordScreen/ResetPasswordByEmail';
+import ResetPasswordByOldPassword from './screens/ResetPasswordScreen/ResetPasswordByOldPassword';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import BirthdayScreen from './screens/ProfileScreen/screens/BirthdayScreen';
 import SearchScreen from './screens/SearchScreen/SearchScreen';
@@ -35,7 +36,14 @@ const SearchStack = () => (
 const ProfileStack = () => (
   <Stack.Navigator initialRouteName="Profile" headerMode="none">
     <Stack.Screen name="Profile" component={ProfileScreen} />
-    <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
+    <Stack.Screen
+      name="ResetPasswordByOldPassword"
+      component={ResetPasswordByOldPassword}
+    />
+    <Stack.Screen
+      name="ResetPasswordByEmail"
+      component={ResetPasswordByEmail}
+    />
     <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
     <Stack.Screen name="Language" component={LanguageScreen} />
     <Stack.Screen name="Birthday" component={BirthdayScreen} />
@@ -51,6 +59,23 @@ const TabStack = () => (
   </Tab.Navigator>
 );
 
+export const config = {
+  screens: {
+    ResetPasswordByEmail: {
+      path: 'reset/:token/:email',
+      parse: {
+        token: (token) => `${token}`,
+        email: (email) => `${email}`,
+      },
+    },
+  },
+};
+
+const linking = {
+  prefixes: ['mwdate://'],
+  config,
+};
+
 const App = () => {
   const dispatch = useDispatch();
 
@@ -62,7 +87,7 @@ const App = () => {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       enabled>
       <SafeAreaView style={styles.container}>
-        <NavigationContainer>
+        <NavigationContainer linking={linking}>
           <Stack.Navigator headerMode={'none'} initialRouteName={'Login'}>
             {isLoggedIn ? (
               <Fragment>
@@ -73,7 +98,14 @@ const App = () => {
                 <Stack.Screen name="Welcome" component={WelcomeScreen} />
                 <Stack.Screen name="Login" component={LoginScreen} />
                 <Stack.Screen name="Register" component={RegisterScreen} />
-                <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+                <Stack.Screen
+                  name="ForgotPassword"
+                  component={ForgotPasswordScreen}
+                />
+                <Stack.Screen
+                  name="ResetPasswordByEmail"
+                  component={ResetPasswordByEmail}
+                />
                 <Stack.Screen name="Language" component={LanguageScreen} />
                 {/* <Stack.Screen
                   name="ConfigureURL"

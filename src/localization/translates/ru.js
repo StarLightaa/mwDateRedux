@@ -37,12 +37,16 @@ export default {
   },
 
   RESTORE_PASSWORD: {
-    TITLE: 'Восстановить аккаунт',
+    TITLE: 'Поиск аккаунта',
+    DESCRIPTION: 'Введите свой электронный адрес, связанный с вашим аккаунтом',
+    MAIL_SENDED: 'На адрес, связанный с вашим аккаунтом, было отправлено сообщение. Проверьте электронную почту, чтобы продолжить.',
     EMAIL_LABEL: 'Почта',
     EMAIL_PLACEHOLDER: 'Ваш почтовый адрес',
     RESTORE: 'Восстановить аккаунт',
+    SEND_MAIL: 'Далее',
     GO_TO_LOGIN: 'Войти в аккаунт',
     HEADER_TITLE: 'Смена пароля',
+    RESET_HEADER_TITLE: 'Сброс пароля',
     CURRENT_PASSWORD_LABEL: 'Текущий пароль',
     CURRENT_PASSWORD_PLACEHOLDER: 'Ваше текущий пароль',
     NEW_PASSWORD_LABEL: 'Новый пароль',
@@ -51,6 +55,7 @@ export default {
     NEW_PASSWORD_CONFIRM_PLACEHOLDER: 'Повторите пароль пожалуйста',
     FORGOT_PASSWORD: 'Забыли пароль?',
     CHANGE_PASSWORD_BTN: 'Сменить пароль',
+    RESET_PASSWORD_BTN: 'Далее',
   },
 
   SETTINGS: {

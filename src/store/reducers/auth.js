@@ -14,6 +14,12 @@ import {
   CHANGE_PASSWORD,
   CHANGE_PASSWORD_SUCCESS,
   CHANGE_PASSWORD_ERROR,
+  SEND_RESET_MAIL,
+  SEND_RESET_MAIL_SUCCESS,
+  SEND_RESET_MAIL_ERROR,
+  GET_RESET_TOKEN_SUCCESS,
+  GET_RESET_TOKEN_ERROR,
+  CLEAR_RESET_MAIL,
 } from '../constants/actions';
 
 export const initialState = {
@@ -33,6 +39,12 @@ export const initialState = {
   changePasswordCurrentPasswordError: null,
   changePasswordNewPasswordError: null,
   changePasswordPasswordConfirmError: null,
+
+  sendResetMailError: null,
+  resetMail: null,
+  resetPasswordToken: null,
+  isSendingResetMail: false,
+  isChangingPassword: false,
 
   isLoggedIn: false,
   isEditing: false,
@@ -56,6 +68,7 @@ export default (state = initialState, action) => {
         isResettingPassword: false,
         isUpdating: false,
         isChangingPassword: false,
+        isSendingResetMail: false,
       };
     case CLEAR_VALIDATION:
       return {
@@ -72,6 +85,7 @@ export default (state = initialState, action) => {
         changePasswordCurrentPasswordError: null,
         changePasswordNewPasswordError: null,
         changePasswordPasswordConfirmError: null,
+        sendResetMailError: null,
       };
 
     case LOGIN:
@@ -196,6 +210,53 @@ export default (state = initialState, action) => {
         changePasswordCurrentPasswordError: currentPasswordError,
         changePasswordNewPasswordError: newPasswordError,
         changePasswordPasswordConfirmError: passwordConfirmError,
+      };
+
+    case CLEAR_RESET_MAIL:
+      return {
+        ...state,
+        resetMail: null,
+        resetPasswordToken: null,
+      };
+
+    case SEND_RESET_MAIL:
+      return {
+        ...state,
+        isSendingResetMail: true,
+      };
+
+    case SEND_RESET_MAIL_SUCCESS:
+      return {
+        ...state,
+        isSendingResetMail: false,
+        resetMail: action.payload.email,
+      };
+
+    case SEND_RESET_MAIL_ERROR:
+      let resetMailError = null;
+
+      let validateResetMailErrors = action.payload.data.error;
+      console.log('validateResetMailErrors', validateResetMailErrors);
+      if (validateResetMailErrors) {
+        resetMailError = validateResetMailErrors.email;
+      }
+      return {
+        ...state,
+        isSendingResetMail: false,
+        resetMail: null,
+        sendResetMailError: resetMailError,
+      };
+
+    case GET_RESET_TOKEN_SUCCESS:
+      return {
+        ...state,
+        resetPasswordToken: action.payload.token,
+      };
+
+    case GET_RESET_TOKEN_ERROR:
+      return {
+        ...state,
+        resetPasswordToken: null,
       };
 
     default:

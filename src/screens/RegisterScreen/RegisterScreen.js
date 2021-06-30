@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import { useFocusEffect } from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 import {
   StyleSheet,
   View,
@@ -70,8 +70,21 @@ const RegisterScreen = ({navigation}) => {
   useFocusEffect(
     React.useCallback(() => {
       dispatch(clearValidation());
-    }, [])
+    }, []),
   );
+
+  const isDisabled = () => {
+    if (
+      login.trim().length < 1 ||
+      name.trim().length < 1 ||
+      email.trim().length < 1 ||
+      password.trim().length < 1 ||
+      password_confirmation.trim().length < 1
+    ) {
+      return true;
+    }
+    return false;
+  };
 
   return (
     <Container>
@@ -144,7 +157,7 @@ const RegisterScreen = ({navigation}) => {
 
       <LoaderButton
         loading={isRegistering}
-        disabled={isRegistering}
+        disabled={isRegistering || isDisabled()}
         text={translations.REGISTER.REGISTER}
         onPress={() => registerUser()}
         customStyles={styles.actionBtn}
