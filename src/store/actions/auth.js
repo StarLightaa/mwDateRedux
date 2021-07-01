@@ -127,7 +127,7 @@ export const updateUser = credentials => async dispatch => {
     const {data} = response.data;
 
     let user = data.user;
-    showToast({message: 'user-profile Почта пользователя' + user.email});
+    showToast({message: 'user-update' + user.email});
     dispatch({type: UPDATE_USER_SUCCESS, payload: {user}});
     return true;
   } catch (error) {

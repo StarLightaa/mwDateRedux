@@ -96,7 +96,13 @@ export default {
   },
 
   BIRTHDAY: {
-    HEADER_TITLE: 'Смена дня рождения',
-    SAVE_BTN: 'Сохранить',
+    HEADER_TITLE: 'Change birthday',
+    SAVE_BTN: 'Save',
   },
+  MODAL_UNSAVED: {
+    TITLE: 'Unsaved changes',
+    DESCRIPTION: 'You have unsaved changes. Anyway continue?',
+    OK_BTN: 'Yes',
+    NO_BTN: 'No',
+  }
 };

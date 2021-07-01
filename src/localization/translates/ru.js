@@ -4,7 +4,7 @@ export default {
   LOGIN: {
     TITLE: 'Войти в свой аккаунт',
     EMAIL_LABEL: 'Почта',
-    EMAIL_PLACEHOLDER: 'Ваш почтовый адрес',
+    EMAIL_PLACEHOLDER: 'Ваш электронный адрес',
     PASSWORD_LABEL: 'Пароль',
     PASSWORD_PLACEHOLDER: 'Ваш пароль',
     FORGOT_PASSWORD: 'Забыли пароль?',
@@ -24,7 +24,7 @@ export default {
     NAME_LABEL: 'Имя',
     NAME_PLACEHOLDER: 'Ваше имя',
     EMAIL_LABEL: 'Почта',
-    EMAIL_PLACEHOLDER: 'Ваш почтовый адрес',
+    EMAIL_PLACEHOLDER: 'Ваш электронный адрес',
     PASSWORD_LABEL: 'Пароль',
     PASSWORD_PLACEHOLDER: 'Ваш пароль',
     CONFIRM_PASSWORD_LABEL: 'Подтверждение пароля',
@@ -41,7 +41,7 @@ export default {
     DESCRIPTION: 'Введите свой электронный адрес, связанный с вашим аккаунтом',
     MAIL_SENDED: 'На адрес, связанный с вашим аккаунтом, было отправлено сообщение. Проверьте электронную почту, чтобы продолжить.',
     EMAIL_LABEL: 'Почта',
-    EMAIL_PLACEHOLDER: 'Ваш почтовый адрес',
+    EMAIL_PLACEHOLDER: 'Ваш электронный адрес',
     RESTORE: 'Восстановить аккаунт',
     SEND_MAIL: 'Далее',
     GO_TO_LOGIN: 'Войти в аккаунт',
@@ -84,19 +84,25 @@ export default {
   PROFILE: {
     HEADER_TITLE: 'Настройки профиля',
     CHANGE_NAME: 'Сменить имя',
-    CHANGE_EMAIL: 'Сменить почтовый адрес',
+    CHANGE_EMAIL: 'Сменить электронный адрес',
     CHANGE_PASSWORD: 'Сменить пароль',
     CHANGE_LANGUAGE: 'Сменить язык',
     CHANGE_DATE_BIRTH: 'Дата рождения',
     MODAL_TITLE_NAME: 'Имя',
     MODAL_PLACEHOLDER_NAME: 'Ваше имя',
-    MODAL_TITLE_EMAIL: 'Почтовый адрес',
+    MODAL_TITLE_EMAIL: 'Электронный адрес',
     MODAL_PLACEHOLDER_EMAIL: 'Ваш email',
     LOGOUT: 'Выйти',
   },
 
   BIRTHDAY: {
     HEADER_TITLE: 'Смена дня рождения',
-    SAVE_BTN: 'Сохранить'
+    SAVE_BTN: 'Сохранить',
   },
+  MODAL_UNSAVED: {
+    TITLE: 'Несохраненные изменения',
+    DESCRIPTION: 'У вас есть несохраненные изменения. Отменить в любом случае?',
+    OK_BTN: 'Да',
+    NO_BTN: 'Нет',
+  }
 };

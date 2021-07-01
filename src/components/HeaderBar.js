@@ -16,6 +16,10 @@ const MenuIcon = props => {
   return <Icon {...props} name="funnel-outline" />;
 };
 
+const SaveIcon = props => {
+  return <Icon {...props} name="checkmark-outline" />;
+};
+
 const MoreIcon = props => {
   return <Icon {...props} name="more-horizontal-outline" />;
 };
@@ -31,12 +35,16 @@ class HeaderBar extends Component {
 
   renderRightControl = () => {
     const {buttonType, onRightPress} = this.props;
-    return (
-      <TopNavigationAction
-        icon={buttonType === 'menu' ? MenuIcon : MoreIcon}
-        onPress={onRightPress}
-      />
-    );
+    switch (buttonType) {
+      case 'menu':
+        return <TopNavigationAction icon={MenuIcon} onPress={onRightPress} />;
+      case 'more':
+        return <TopNavigationAction icon={MoreIcon} onPress={onRightPress} />;
+      case 'save':
+        return <TopNavigationAction icon={SaveIcon} onPress={onRightPress} />;
+      default:
+        return <TopNavigationAction icon={SaveIcon} onPress={onRightPress} />;
+    }
   };
 
   render() {

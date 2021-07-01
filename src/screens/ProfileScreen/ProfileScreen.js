@@ -11,6 +11,7 @@ import {
   Button,
 } from 'react-native';
 
+import moment from 'moment';
 import {LocalizationContext} from '../../localization/LocalizationContext';
 
 import {Card, Layout, Text, Input} from '@ui-kitten/components';
@@ -30,6 +31,7 @@ const ProfileScreen = ({navigation}) => {
   const name = user ? user.name : '';
   const lastname = user ? user.lastname : '';
   const email = user ? user.email : '';
+  const birthday = user ? user.birthday : '';
   const language = useSelector(store => store.settings.localeText);
 
   const [modalNameVisible, setModalNameVisible] = useState(false);
@@ -82,6 +84,9 @@ const ProfileScreen = ({navigation}) => {
 
       case 'language':
         return language;
+
+      case 'birthday':
+        return moment(birthday).format('DD.MM.YYYY');
 
       default:
         break;
