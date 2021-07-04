@@ -6,11 +6,6 @@ export const LANGUAGES = {
 
 export const PROFILE_ITEMS = [
   {
-    text: 'CHANGE_NAME',
-    iconName: 'edit-outline',
-    itemName: 'name',
-  },
-  {
     text: 'CHANGE_EMAIL',
     iconName: 'email-outline',
     itemName: 'email',
@@ -26,18 +21,7 @@ export const PROFILE_ITEMS = [
     iconName: 'globe-outline',
     itemName: 'language',
   },
-  {
-    text: 'CHANGE_DATE_BIRTH',
-    checked: true,
-    iconName: 'calendar-outline',
-    itemName: 'birthday',
-  },
-  {
-    text: 'CHANGE_SEX',
-    checked: true,
-    iconName: 'calendar-outline',
-    itemName: 'sex',
-  },
+
   {
     text: 'LOGOUT',
     checked: false,
@@ -46,15 +30,34 @@ export const PROFILE_ITEMS = [
   },
 ];
 
+export const USER_PRIMARY_ITEMS = [
+  {
+    text: 'CHANGE_NAME',
+    itemName: 'name',
+  },
+  {
+    text: 'CHANGE_AGE',
+    itemName: 'age',
+  },
+  {
+    text: 'CHANGE_SEX',
+    itemName: 'sex',
+  },
+  {
+    text: 'CHANGE_CITY',
+    itemName: 'city',
+  },
+];
+
 export const ANKETA_ITEMS = [
   {
     text: 'HAIR_COLOR',
-    iconName: 'edit-outline',
+    iconName: 'chevron-right-outline',
     itemName: 'hair_color',
   },
   {
     text: 'HOBBIES',
-    iconName: 'edit-outline',
+    iconName: 'chevron-right-outline',
     itemName: 'hobbies',
   },
 ];

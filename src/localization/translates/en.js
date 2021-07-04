@@ -1,6 +1,13 @@
 export default {
   WELCOME: 'Welcome',
 
+  COMMON: {
+    MAKE_PHOTO: 'Make photo from camera',
+    CHOOSE_PHOTO: 'Choose photo from gallery',
+    UPLOAD_PHOTO: 'Upload image',
+    CHANGE_PHOTO: 'Change photo',
+  },
+
   LOGIN: {
     TITLE: 'Sign in with account',
     EMAIL_LABEL: 'Email',
@@ -84,12 +91,14 @@ export default {
 
   PROFILE: {
     HEADER_TITLE: 'Profile settings',
-    CHANGE_NAME: 'Change name',
-    CHANGE_EMAIL: 'Change email',
-    CHANGE_PASSWORD: 'Change password',
-    CHANGE_LANGUAGE: 'Change language',
-    CHANGE_DATE_BIRTH: 'Change birthday',
+    CHANGE_NAME: 'Name',
+    CHANGE_EMAIL: 'Email',
+    CHANGE_PASSWORD: 'Password',
+    CHANGE_LANGUAGE: 'Language',
+    CHANGE_AGE: 'Age',
+    CHANGE_DATE_BIRTH: 'Birthday',
     CHANGE_SEX: 'Gender',
+    CHANGE_CITY: 'City',
     MODAL_TITLE_NAME: 'Name',
     MODAL_PLACEHOLDER_NAME: 'Your name',
     MODAL_TITLE_EMAIL: 'Email',

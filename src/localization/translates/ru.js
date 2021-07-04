@@ -1,5 +1,11 @@
 export default {
   WELCOME: 'Welcome',
+  COMMON: {
+    MAKE_PHOTO: 'Открыть камеру',
+    CHOOSE_PHOTO: 'Выбрать из галереи',
+    UPLOAD_PHOTO: 'Загрузить фотографию',
+    CHANGE_PHOTO: 'Изменить фотографию',
+  },
 
   LOGIN: {
     TITLE: 'Войти в свой аккаунт',
@@ -84,12 +90,14 @@ export default {
 
   PROFILE: {
     HEADER_TITLE: 'Настройки профиля',
-    CHANGE_NAME: 'Сменить имя',
-    CHANGE_EMAIL: 'Сменить электронный адрес',
-    CHANGE_PASSWORD: 'Сменить пароль',
-    CHANGE_LANGUAGE: 'Сменить язык',
+    CHANGE_NAME: 'Имя',
+    CHANGE_EMAIL: 'Электронный адрес',
+    CHANGE_PASSWORD: 'Пароль',
+    CHANGE_LANGUAGE: 'Язык',
+    CHANGE_AGE: 'Возраст',
     CHANGE_DATE_BIRTH: 'Дата рождения',
     CHANGE_SEX: 'Пол',
+    CHANGE_CITY: 'Город',
     MODAL_TITLE_NAME: 'Имя',
     MODAL_PLACEHOLDER_NAME: 'Ваше имя',
     MODAL_TITLE_EMAIL: 'Электронный адрес',

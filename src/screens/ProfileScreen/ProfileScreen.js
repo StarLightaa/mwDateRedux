@@ -21,31 +21,29 @@ import ModalWithInput from '../../components/ModalWithInput';
 import ProfileItem from './components/ProfileItem';
 import {PROFILE_ITEMS} from '../../store/constants/index';
 
-import {onLogOut, userProfile, updateUser} from '../../store/actions/auth';
+import {onLogOut, updateUser} from '../../store/actions/auth';
 
 const ProfileScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const {translations} = useContext(LocalizationContext);
 
   const user = useSelector(store => store.auth.user);
-  const name = user ? user.name : '';
+  
   const lastname = user ? user.lastname : '';
   const email = user ? user.email : '';
-  const birthday = user ? user.birthday : '';
-  const sex = user ? user.sex.ru : '';
+  
   const language = useSelector(store => store.settings.localeText);
 
-  const [modalNameVisible, setModalNameVisible] = useState(false);
   const [modalEmailVisible, setModalEmailVisible] = useState(false);
-  const [inputName, setInputName] = useState(name);
-  const [inputEmail, setInputEmail] = useState(name);
+  
+  const [inputEmail, setInputEmail] = useState(email);
+
+  const goBack = () => {
+    navigation.goBack();
+  };
 
   const onPressItem = async ({itemName}) => {
     switch (itemName) {
-      case 'name':
-        setModalNameVisible(true);
-        break;
-
       case 'email':
         setModalEmailVisible(true);
         break;
@@ -56,14 +54,6 @@ const ProfileScreen = ({navigation}) => {
 
       case 'language':
         navigation.navigate('Language');
-        break;
-
-      case 'birthday':
-        navigation.navigate('Birthday');
-        break;
-
-      case 'sex':
-        navigation.navigate('Sex');
         break;
 
       case 'logout':
@@ -81,20 +71,11 @@ const ProfileScreen = ({navigation}) => {
 
   const getProfileItemValue = itemName => {
     switch (itemName) {
-      case 'name':
-        return name;
-
       case 'email':
         return email;
 
       case 'language':
         return language;
-
-      case 'birthday':
-        return moment(birthday).format('DD.MM.YYYY');
-
-      case 'sex':
-        return sex;
 
       default:
         break;
@@ -103,20 +84,13 @@ const ProfileScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <HeaderBar title={translations.PROFILE.HEADER_TITLE} />
+      <HeaderBar
+        title={translations.PROFILE.HEADER_TITLE}
+        showLeftButton
+        onBackPress={goBack}
+      />
+
       <Container>
-        <ModalWithInput
-          modalVisible={modalNameVisible}
-          setModalVisible={setModalNameVisible}
-          title={translations.PROFILE.MODAL_TITLE_NAME}
-          inputValue={inputName}
-          setInputValue={setInputName}
-          prevState={name}
-          inputPlaceholder={translations.PROFILE.MODAL_PLACEHOLDER_NAME}
-          onSuccess={updateUser({
-            name: inputName,
-          })}
-        />
         <ModalWithInput
           modalVisible={modalEmailVisible}
           setModalVisible={setModalEmailVisible}

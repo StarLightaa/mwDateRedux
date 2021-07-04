@@ -21,7 +21,7 @@ const ListItem = ({
         <View style={styles.sectionRight}>
           <Text style={styles.sectionValue}>{value}</Text>
           <Icon
-            name={iconName}
+            name={iconName || 'chevron-right-outline'}
             //   fill={theme['color-primary-default']}
             width={iconSize}
             height={iconSize}

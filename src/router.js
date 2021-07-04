@@ -43,8 +43,13 @@ const AnketaStack = () => (
   <Stack.Navigator initialRouteName="Anketa" headerMode="none">
     <Stack.Screen name="Anketa" component={AnketaScreen} />
 
+    <Stack.Screen name="Profile" component={ProfileScreen} />
+    <Stack.Screen name="Birthday" component={BirthdayScreen} />
+    <Stack.Screen name="Sex" component={SexScreen} />
     <Stack.Screen name="HairColor" component={HairColorScreen} />
     <Stack.Screen name="Hobbies" component={HobbiesScreen} />
+
+    <Stack.Screen name="Language" component={LanguageScreen} />
   </Stack.Navigator>
 );
 
@@ -61,18 +66,15 @@ const ProfileStack = () => (
     />
     <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
     <Stack.Screen name="Language" component={LanguageScreen} />
-    <Stack.Screen name="Birthday" component={BirthdayScreen} />
-    <Stack.Screen name="Sex" component={SexScreen} />
   </Stack.Navigator>
 );
 
 const TabStack = () => (
   <Tab.Navigator
-    initialRouteName="Profile"
+    initialRouteName="Anketa"
     tabBar={props => <TabBar {...props} />}>
     <Tab.Screen name="Search" component={SearchStack} />
     <Tab.Screen name="Anketa" component={AnketaStack} />
-    <Tab.Screen name="Profile" component={ProfileStack} />
   </Tab.Navigator>
 );
 
