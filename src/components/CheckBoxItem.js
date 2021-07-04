@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
-import {Radio} from '@ui-kitten/components';
+import {CheckBox} from '@ui-kitten/components';
 
-const LanguageItem = ({title, item, onCheckedChange, isChecked}) => {
+const CheckBoxItem = ({title, item, onCheckedChange, isChecked}) => {
   return (
     <TouchableOpacity
       style={styles.itemView}
@@ -11,8 +11,8 @@ const LanguageItem = ({title, item, onCheckedChange, isChecked}) => {
         <Text style={styles.text}>{title}</Text>
       </View>
 
-      <View style={styles.radioView}>
-        <Radio checked={isChecked} onChange={() => onCheckedChange({item})} />
+      <View style={styles.checkBoxView}>
+        <CheckBox checked={isChecked} onChange={() => onCheckedChange({item})} />
       </View>
     </TouchableOpacity>
   );
@@ -42,10 +42,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: 'left',
   },
-  radioView: {
+  checkBoxView: {
     flex: 1,
     alignItems: 'flex-end',
   },
 });
 
-export default LanguageItem;
+export default CheckBoxItem;

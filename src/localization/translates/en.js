@@ -78,6 +78,7 @@ export default {
 
   BOTTOM_TABS: {
     SEARCH: 'Search',
+    ANKETA: 'Anketa',
     PROFILE: 'Profile',
   },
 
@@ -88,11 +89,18 @@ export default {
     CHANGE_PASSWORD: 'Change password',
     CHANGE_LANGUAGE: 'Change language',
     CHANGE_DATE_BIRTH: 'Change birthday',
+    CHANGE_SEX: 'Gender',
     MODAL_TITLE_NAME: 'Name',
     MODAL_PLACEHOLDER_NAME: 'Your name',
     MODAL_TITLE_EMAIL: 'Email',
     MODAL_PLACEHOLDER_EMAIL: 'Your email',
     LOGOUT: 'Logout',
+  },
+
+  ANKETA: {
+    HEADER_TITLE: 'My anket',
+    HAIR_COLOR: 'Hair color',
+    HOBBIES: 'Hobbies',
   },
 
   BIRTHDAY: {

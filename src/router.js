@@ -21,8 +21,14 @@ import ResetPasswordByEmail from './screens/ResetPasswordScreen/ResetPasswordByE
 import ResetPasswordByOldPassword from './screens/ResetPasswordScreen/ResetPasswordByOldPassword';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import BirthdayScreen from './screens/ProfileScreen/screens/BirthdayScreen';
+import SexScreen from './screens/ProfileScreen/screens/SexScreen';
+
 import SearchScreen from './screens/SearchScreen/SearchScreen';
 import LanguageScreen from './screens/LanguageScreen/LanguageScreen';
+
+import AnketaScreen from './screens/AnketaScreen/AnketaScreen';
+import HairColorScreen from './screens/AnketaScreen/screens/HairColorScreen';
+import HobbiesScreen from './screens/AnketaScreen/screens/HobbiesScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -30,6 +36,15 @@ const Stack = createStackNavigator();
 const SearchStack = () => (
   <Stack.Navigator initialRouteName="Search">
     <Stack.Screen name="Search" component={SearchScreen} />
+  </Stack.Navigator>
+);
+
+const AnketaStack = () => (
+  <Stack.Navigator initialRouteName="Anketa" headerMode="none">
+    <Stack.Screen name="Anketa" component={AnketaScreen} />
+
+    <Stack.Screen name="HairColor" component={HairColorScreen} />
+    <Stack.Screen name="Hobbies" component={HobbiesScreen} />
   </Stack.Navigator>
 );
 
@@ -47,6 +62,7 @@ const ProfileStack = () => (
     <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
     <Stack.Screen name="Language" component={LanguageScreen} />
     <Stack.Screen name="Birthday" component={BirthdayScreen} />
+    <Stack.Screen name="Sex" component={SexScreen} />
   </Stack.Navigator>
 );
 
@@ -55,6 +71,7 @@ const TabStack = () => (
     initialRouteName="Profile"
     tabBar={props => <TabBar {...props} />}>
     <Tab.Screen name="Search" component={SearchStack} />
+    <Tab.Screen name="Anketa" component={AnketaStack} />
     <Tab.Screen name="Profile" component={ProfileStack} />
   </Tab.Navigator>
 );

@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
 import {Radio} from '@ui-kitten/components';
 
-const LanguageItem = ({title, item, onCheckedChange, isChecked}) => {
+const RadioButton = ({title, item, onCheckedChange, isChecked}) => {
   return (
     <TouchableOpacity
       style={styles.itemView}
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LanguageItem;
+export default RadioButton;

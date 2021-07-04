@@ -2,51 +2,42 @@ import React, {useState, useContext} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {StyleSheet, SafeAreaView, View} from 'react-native';
 
-import {setLocale} from '../../store/actions/settings';
-import {LANGUAGES} from '../../store/constants';
+import {LocalizationContext} from '../../../localization/LocalizationContext';
 
-import {LocalizationContext} from '../../localization/LocalizationContext';
+import HeaderBar from '../../../components/HeaderBar';
+import RadioButton from '../../../components/RadioButton';
 
-import HeaderBar from '../../components/HeaderBar';
-import LanguageItem from '../../components/LanguageItem';
-
-const LanguageScreen = ({navigation}) => {
+const HairColorScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const settings = useSelector(state => state.settings);
-  const localeValue = settings.localeValue || 'en';
+  const {translations} = useContext(LocalizationContext);
 
-  const languages = Object.keys(LANGUAGES);
+  const [value, setValue] = useState('shaten');
 
-  const {translations, setAppLanguage} = useContext(LocalizationContext);
-
-  const handleSetLanguage = async language => {
-    setAppLanguage(language);
-    dispatch(setLocale(language));
-  };
-
-  const onCheckedChange = ({item}) => {
-    handleSetLanguage(item);
-  };
+  const onCheckedChange = ({item}) => {};
 
   const goBack = () => {
     navigation.goBack();
   };
 
+  const HAIRCOLORS  = {
+    blond: 'блондин/блондинка',
+    shaten: 'brown-haired male / brown-haired female',
+    redhead: 'red-haired male / red-haired female',
+  }
+
+  const hairColor = Object.keys(HAIRCOLORS);
+
   return (
     <SafeAreaView style={styles.container}>
-      <HeaderBar
-        title={translations.SETTINGS.CHANGE_LANGUAGE}
-        showLeftButton
-        onBackPress={goBack}
-      />
+      <HeaderBar title="Цвет волос" showLeftButton onBackPress={goBack} />
       <View style={styles.itemMainView}>
-        {languages.map(item => {
+        {hairColor.map(item => {
           return (
-            <LanguageItem
-              key={LANGUAGES[item]}
+            <RadioButton
+              key={HAIRCOLORS[item]}
               item={item}
-              title={LANGUAGES[item]}
-              isChecked={localeValue === item ? true : false}
+              title={HAIRCOLORS[item]}
+              isChecked={value === item ? true : false}
               onCheckedChange={onCheckedChange}
             />
           );
@@ -88,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LanguageScreen;
+export default HairColorScreen;

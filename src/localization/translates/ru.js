@@ -78,6 +78,7 @@ export default {
 
   BOTTOM_TABS: {
     SEARCH: 'Поиск',
+    ANKETA: 'Анкета',
     PROFILE: 'Профиль',
   },
 
@@ -88,11 +89,18 @@ export default {
     CHANGE_PASSWORD: 'Сменить пароль',
     CHANGE_LANGUAGE: 'Сменить язык',
     CHANGE_DATE_BIRTH: 'Дата рождения',
+    CHANGE_SEX: 'Пол',
     MODAL_TITLE_NAME: 'Имя',
     MODAL_PLACEHOLDER_NAME: 'Ваше имя',
     MODAL_TITLE_EMAIL: 'Электронный адрес',
     MODAL_PLACEHOLDER_EMAIL: 'Ваш email',
     LOGOUT: 'Выйти',
+  },
+
+  ANKETA: {
+    HEADER_TITLE: 'Моя анкета',
+    HAIR_COLOR: 'Цвет волос',
+    HOBBIES: 'Хобби',
   },
 
   BIRTHDAY: {

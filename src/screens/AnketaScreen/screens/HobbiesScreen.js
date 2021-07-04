@@ -2,51 +2,44 @@ import React, {useState, useContext} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {StyleSheet, SafeAreaView, View} from 'react-native';
 
-import {setLocale} from '../../store/actions/settings';
-import {LANGUAGES} from '../../store/constants';
+import {LocalizationContext} from '../../../localization/LocalizationContext';
 
-import {LocalizationContext} from '../../localization/LocalizationContext';
+import HeaderBar from '../../../components/HeaderBar';
+import CheckBox from '../../../components/CheckBoxItem';
 
-import HeaderBar from '../../components/HeaderBar';
-import LanguageItem from '../../components/LanguageItem';
-
-const LanguageScreen = ({navigation}) => {
+const HobbiesScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const settings = useSelector(state => state.settings);
-  const localeValue = settings.localeValue || 'en';
+  const {translations} = useContext(LocalizationContext);
 
-  const languages = Object.keys(LANGUAGES);
-
-  const {translations, setAppLanguage} = useContext(LocalizationContext);
-
-  const handleSetLanguage = async language => {
-    setAppLanguage(language);
-    dispatch(setLocale(language));
-  };
+  const [value, setValue] = useState('hobbies_7');
 
   const onCheckedChange = ({item}) => {
-    handleSetLanguage(item);
+    setValue(item);
   };
 
   const goBack = () => {
     navigation.goBack();
   };
 
+  const HOBBIES  = {
+    hobbies_6: 'gardening',
+    hobbies_7: 'sports',
+    hobbies_8: 'arts',
+  }
+
+  const hobby = Object.keys(HOBBIES);
+
   return (
     <SafeAreaView style={styles.container}>
-      <HeaderBar
-        title={translations.SETTINGS.CHANGE_LANGUAGE}
-        showLeftButton
-        onBackPress={goBack}
-      />
+      <HeaderBar title="Хобби" showLeftButton onBackPress={goBack} />
       <View style={styles.itemMainView}>
-        {languages.map(item => {
+        {hobby.map(item => {
           return (
-            <LanguageItem
-              key={LANGUAGES[item]}
+            <CheckBox
+              key={HOBBIES[item]}
               item={item}
-              title={LANGUAGES[item]}
-              isChecked={localeValue === item ? true : false}
+              title={HOBBIES[item]}
+              isChecked={value === item ? true : false}
               onCheckedChange={onCheckedChange}
             />
           );
@@ -88,4 +81,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LanguageScreen;
+export default HobbiesScreen;

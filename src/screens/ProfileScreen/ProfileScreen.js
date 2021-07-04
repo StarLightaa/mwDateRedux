@@ -32,6 +32,7 @@ const ProfileScreen = ({navigation}) => {
   const lastname = user ? user.lastname : '';
   const email = user ? user.email : '';
   const birthday = user ? user.birthday : '';
+  const sex = user ? user.sex.ru : '';
   const language = useSelector(store => store.settings.localeText);
 
   const [modalNameVisible, setModalNameVisible] = useState(false);
@@ -61,6 +62,10 @@ const ProfileScreen = ({navigation}) => {
         navigation.navigate('Birthday');
         break;
 
+      case 'sex':
+        navigation.navigate('Sex');
+        break;
+
       case 'logout':
         dispatch(onLogOut());
         break;
@@ -87,6 +92,9 @@ const ProfileScreen = ({navigation}) => {
 
       case 'birthday':
         return moment(birthday).format('DD.MM.YYYY');
+
+      case 'sex':
+        return sex;
 
       default:
         break;
