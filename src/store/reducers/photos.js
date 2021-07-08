@@ -3,6 +3,8 @@ import {
   GET_PHOTOS_ERROR,
   ADD_PHOTO_SUCCESS,
   ADD_PHOTO_ERROR,
+  DELETE_PHOTO_SUCCESS,
+  DELETE_PHOTO_ERROR,
 } from '../constants/actions';
 
 export const initialState = {
@@ -12,7 +14,6 @@ export const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_PHOTOS_SUCCESS:
-        console.log('action.payload.photos', action.payload.photos);
       return {
         ...state,
         photos: action.payload.photos,
@@ -25,12 +26,14 @@ export default (state = initialState, action) => {
       };
 
     case ADD_PHOTO_SUCCESS:
+    case DELETE_PHOTO_SUCCESS:
       return {
         ...state,
         photos: action.payload.photos,
       };
 
     case ADD_PHOTO_ERROR:
+    case DELETE_PHOTO_ERROR:
       return {
         ...state,
         // photos: null,

@@ -18,7 +18,7 @@ const parseErrorCode = error => {
   } else {
     store.dispatch(resetLoaders());
     showToast({message: 'Ошибка при отправке запроса'});
-    console.log('parseErrorCode', error)
+    console.log('parseErrorCode', error);
   }
   return Promise.reject(error.response);
 };

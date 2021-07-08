@@ -15,12 +15,11 @@ import ImagePicker from './ImagePicker';
 import ImageViewer from 'react-native-image-zoom-viewer';
 
 import {SERVER_URL} from '../store/constants/url';
-import {addPhoto} from '../store/actions/photos';
+import {addPhoto, deletePhoto} from '../store/actions/photos';
 
 const ImageGallery = ({imagesArr}) => {
   const dispatch = useDispatch();
   const sheetRef = useRef(null);
-  const [uploadFile, setUploadFile] = useState(null);
   const [images, setImages] = useState([]);
   const [image_index, setImage_index] = useState(0);
 
@@ -56,6 +55,17 @@ const ImageGallery = ({imagesArr}) => {
     closeSheet();
   };
 
+  const onDelete = () => {
+    let deleteId = getCurrentImageId()
+    dispatch(deletePhoto(deleteId));
+    closeModal();
+  };
+
+  const getCurrentImageId = () => {
+    let image = images.find(el => el.index == image_index);
+    return image?.id;
+  };
+
   const [modalVisible, setModalVisible] = useState(false);
 
   const openModal = index => {
@@ -69,6 +79,23 @@ const ImageGallery = ({imagesArr}) => {
     if (modalVisible) {
       setModalVisible(false);
     }
+  };
+
+  const footerComponent = () => {
+    return (
+      <View style={styles.actionPanel}>
+        <TouchableOpacity
+          onPress={() => {onDelete()}}>
+          <Icon
+            name="trash-2-outline"
+            fill="#ccc"
+            width={26}
+            height={26}
+            style={styles.removeIcon}
+          />
+        </TouchableOpacity>
+      </View>
+    );
   };
 
   return (
@@ -97,6 +124,8 @@ const ImageGallery = ({imagesArr}) => {
           onSwipeDown={() => closeModal()}
           saveToLocalByLongPress={false}
           menuContext={{}}
+          renderFooter={footerComponent}
+          onChange={setImage_index}
         />
       </Modal>
 
@@ -311,4 +340,16 @@ const styles = StyleSheet.create({
     borderStyle: 'dotted',
     borderRadius: 10,
   },
+  actionPanel: {
+    flex: 1,
+    width: width,
+    height: 60,
+    backgroundColor: '#212121',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  removeIcon: {
+    width: 26,
+    height: 26,
+  }
 });

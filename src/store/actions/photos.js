@@ -7,6 +7,8 @@ import {
   GET_PHOTOS_ERROR,
   ADD_PHOTO_SUCCESS,
   ADD_PHOTO_ERROR,
+  DELETE_PHOTO_SUCCESS,
+  DELETE_PHOTO_ERROR,
 } from '../constants/actions';
 
 export const getPhotos = () => async dispatch => {
@@ -40,9 +42,24 @@ export const addPhoto = credentials => async dispatch => {
     dispatch({type: ADD_PHOTO_SUCCESS, payload: {photos}});
     return photos;
   } catch (error) {
-    showToast({message: 'Ошибка получения фотографий' + error.status});
+    showToast({message: 'Ошибка добавления фотографии' + error.status});
     console.log('photo error', error);
     dispatch({type: ADD_PHOTO_ERROR, payload: error});
+    return [];
+  }
+};
+
+export const deletePhoto = id => async dispatch => {
+  try {
+    const response = await APIHelper.delete(`photos/${id}`);
+    const {data} = response.data;
+    let photos = data;
+    dispatch({type: DELETE_PHOTO_SUCCESS, payload: {photos}});
+    return photos;
+  } catch (error) {
+    showToast({message: 'Ошибка удаления фотографии' + error.status});
+    console.log('photo error', error);
+    dispatch({type: DELETE_PHOTO_ERROR, payload: error});
     return [];
   }
 };
