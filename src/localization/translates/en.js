@@ -46,7 +46,8 @@ export default {
   RESTORE_PASSWORD: {
     TITLE: 'Search account',
     DESCRIPTION: 'Enter your email address associated with your account',
-    MAIL_SENDED: 'An email was sent to the address associated with your account message. Check your email to continue.',
+    MAIL_SENDED:
+      'An email was sent to the address associated with your account message. Check your email to continue.',
     EMAIL_LABEL: 'Email',
     EMAIL_PLACEHOLDER: 'Your email',
     RESTORE: 'Restore account',
@@ -108,8 +109,28 @@ export default {
 
   ANKETA: {
     HEADER_TITLE: 'My anket',
+    SMOKING: 'Smoking',
+    RELIGION: 'Religion',
+    CHILDREN: 'Children',
     HAIR_COLOR: 'Hair color',
+    EYE_COLOR: 'Eye color',
+    ZODIAC: 'Zodiac sign',
+    BODY_TYPE: 'Body type',
+    BODY_HEIGHT: 'Height',
+    AGE: 'Age',
+    SOCIAL_STATUS: 'Social_status',
+    BAD_HABITS: 'Attitude towards bad habits',
+    WORK_TYPE: 'My occupation',
+    MONTHLY_INCOME: 'Monthly income ($)',
     HOBBIES: 'Hobbies',
+    MARRIAGE: 'Attitude towards marriage',
+    FUTURE_CHILDREN: 'Attitude towards future children',
+    POSSESSIONS: 'Material possessions',
+    RESPONSIBILITY: 'Attitude towards family responsibilities',
+    PLACE_WANT_LIVE: 'I want to live in',
+    LEISURE_ACTIVITIES: 'Leisure activities',
+    PRESENTS: 'Attitude towards gifts and presents',
+    HATES: 'I hate with a passion',
   },
 
   BIRTHDAY: {
@@ -121,5 +142,5 @@ export default {
     DESCRIPTION: 'You have unsaved changes. Anyway continue?',
     OK_BTN: 'Yes',
     NO_BTN: 'No',
-  }
+  },
 };

@@ -9,25 +9,24 @@ const ListItem = ({
   iconSize,
   itemType,
   iconName,
-  itemName,
+  itemTitle,
+  itemValue,
   onPressItem,
 }) => {
   return (
     <React.Fragment>
       <TouchableOpacity
         style={[styles.section, styles.enabledSection]}
-        onPress={() => onPressItem({itemName})}>
+        onPress={() => onPressItem({itemTitle, itemValue})}>
         <Text style={styles.sectionText}>{text}</Text>
-        <View style={styles.sectionRight}>
-          <Text style={styles.sectionValue}>{value}</Text>
-          <Icon
-            name={iconName || 'chevron-right-outline'}
-            //   fill={theme['color-primary-default']}
-            width={iconSize}
-            height={iconSize}
-            style={styles.sectionIcon}
-          />
-        </View>
+        <Text style={styles.sectionValue}>{value}</Text>
+        <Icon
+          name={iconName || 'chevron-right-outline'}
+          //   fill={theme['color-primary-default']}
+          width={iconSize || 26}
+          height={iconSize || 26}
+          style={styles.sectionIcon}
+        />
       </TouchableOpacity>
       <Divider />
     </React.Fragment>
@@ -38,24 +37,22 @@ export default ListItem;
 
 const styles = StyleSheet.create({
   section: {
+    width: '100%',
     paddingVertical: 16,
-  },
-  enabledSection: {
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-    paddingTop: 16,
   },
-
   sectionText: {
+    width: '47%',
     // fontSize: theme['font-size-small'],
     // fontWeight: theme['font-medium'],
   },
-  sectionRight: {
+  sectionValue: {
+    width: '47%',
     flexDirection: 'row',
     alignItems: 'center',
+    textAlign: 'right',
   },
-  sectionIcon: {
-    marginLeft: 15
-  }
+  sectionIcon: {},
 });

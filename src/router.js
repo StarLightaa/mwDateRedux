@@ -29,6 +29,7 @@ import LanguageScreen from './screens/LanguageScreen/LanguageScreen';
 import AnketaScreen from './screens/AnketaScreen/AnketaScreen';
 import HairColorScreen from './screens/AnketaScreen/screens/HairColorScreen';
 import HobbiesScreen from './screens/AnketaScreen/screens/HobbiesScreen';
+import EditRadioAnketaScreen from './screens/AnketaScreen/screens/EditRadioAnketaScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -48,6 +49,7 @@ const AnketaStack = () => (
     <Stack.Screen name="Sex" component={SexScreen} />
     <Stack.Screen name="HairColor" component={HairColorScreen} />
     <Stack.Screen name="Hobbies" component={HobbiesScreen} />
+    <Stack.Screen name="EditAnketa" component={EditRadioAnketaScreen} />
 
     <Stack.Screen name="Language" component={LanguageScreen} />
   </Stack.Navigator>

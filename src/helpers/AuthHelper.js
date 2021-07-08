@@ -11,3 +11,16 @@ export const getHeaders = async () => {
     };
   } catch (error) {}
 };
+
+export const getHeadersUploadFiles = async () => {
+  try {
+    const state = await store.getState();
+    return {
+      'Content-Type': 'multipart/form-data',
+      Accept: 'application/json',
+      'Content-Language': state.settings.localeValue ? state.settings.localeValue : 'en',
+      Authorization: 'Bearer ' + state.auth.accessToken,
+    };
+  } catch (error) {}
+};
+

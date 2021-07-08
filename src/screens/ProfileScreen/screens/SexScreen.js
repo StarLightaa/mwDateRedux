@@ -24,10 +24,10 @@ const SexScreen = ({navigation}) => {
     let fetchData = await dispatch(getCategoryTranslate('gender'));
     if (fetchData) {
       fetchData = fetchData.filter(function (item) {
-        if (item.is_group_title == 1) {
-          setGenderTitle(item.ru);
+        if (item.value == 'gender') {
+          setGenderTitle(item.translate);
         }
-        return item.is_group_title != 1;
+        return item.value != 'gender';
       });
     }
     setGenders(fetchData);
@@ -48,7 +48,7 @@ const SexScreen = ({navigation}) => {
   const saveData = () => {
     dispatch(
       updateUser({
-        sex: value,
+        sex_id: value,
       }),
     );
     // setEdited(false);
@@ -70,7 +70,7 @@ const SexScreen = ({navigation}) => {
             <RadioButton
               key={item.id}
               item={item}
-              title={item.ru}
+              title={item.translate}
               isChecked={value === item.id ? true : false}
               onCheckedChange={onCheckedChange}
             />

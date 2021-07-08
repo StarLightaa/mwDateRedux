@@ -1,5 +1,12 @@
-import React, {useContext, useState, useRef, useEffect} from 'react';
+import React, {
+  useContext,
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import {useFocusEffect} from '@react-navigation/native';
 import {
   StyleSheet,
   View,
@@ -7,6 +14,7 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
+  ActivityIndicator,
   SafeAreaView,
   ScrollView,
 } from 'react-native';
@@ -20,10 +28,13 @@ import ModalWithInput from '../../components/ModalWithInput';
 import HeaderBar from '../../components/HeaderBar';
 import ListItem from '../../components/ListItem';
 import ImagePicker from '../../components/ImagePicker';
+import ImageGallery from '../../components/ImageGallery';
 import {DEFAULT_IMAGE_URI} from '../../store/constants/url';
 
-import {USER_PRIMARY_ITEMS, ANKETA_ITEMS} from '../../store/constants/index';
+import {USER_PRIMARY_ITEMS} from '../../store/constants/index';
 import {updateUser} from '../../store/actions/auth';
+import {getAnketa, getAnketaTitles} from '../../store/actions/anketa';
+import {getPhotos} from '../../store/actions/photos';
 
 const SettingsIcon = props => <Icon {...props} name="settings-2-outline" />;
 
@@ -35,15 +46,62 @@ const AnketaScreen = ({navigation}) => {
   const {translations} = useContext(LocalizationContext);
 
   const [modalNameVisible, setModalNameVisible] = useState(false);
+  const anketa = useSelector(store => store.anketa.fields);
   const user = useSelector(store => store.auth.user);
   const name = user ? user.name : '';
   const birthday = user ? user.birthday : '';
 
-  const sex = user ? user.sex.ru : '';
+  const sex = user ? user.sex.translate : '';
   const [inputName, setInputName] = useState(name);
 
-  const onPressItem = async ({itemName}) => {
-    switch (itemName) {
+  const [anketaTitles, setAnketaTitles] = useState([]);
+  const [isAnketaLoading, setIsAnketaLoading] = useState(true);
+  const [isAnketaTitlesLoading, setIsAnketaTitlesLoading] = useState(true);
+
+  const photos = useSelector(store => store.photos.photos);
+  const [isPhotosLoading, setIsPhotosLoading] = useState(true);
+
+  const fetchData = useCallback(async () => {
+    await dispatch(getAnketa());
+  }, []);
+
+  const fetchAnketaTitles = useCallback(async () => {
+    let titles = await dispatch(getAnketaTitles());
+    setAnketaTitles(titles);
+  }, []);
+
+  const fetchPhotos = useCallback(async () => {
+    await dispatch(getPhotos());
+    setIsPhotosLoading(false); // call is finished, set to false
+  }, []);
+
+  useEffect(() => {
+    fetchPhotos().then(() => console.log('photos loading'));
+  }, [fetchPhotos]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchData();
+      setIsAnketaLoading(false);
+    }, [fetchData]),
+  );
+
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchAnketaTitles();
+      setIsAnketaTitlesLoading(false);
+    }, [fetchAnketaTitles]),
+  );
+
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     fetchPhotos();
+  //     setIsPhotosLoading(false);
+  //   }, [fetchPhotos]),
+  // );
+
+  const onPressItem = async ({itemTitle, itemValue}) => {
+    switch (itemValue) {
       case 'name':
         setModalNameVisible(true);
         break;
@@ -56,14 +114,6 @@ const AnketaScreen = ({navigation}) => {
         navigation.navigate('Sex');
         break;
 
-      case 'hair_color':
-        navigation.navigate('HairColor');
-        break;
-
-      case 'hobbies':
-        navigation.navigate('Hobbies');
-        break;
-
       // case 'switch-account':
       //   navigation.navigate('Account', {accounts});
       //   break;
@@ -73,8 +123,8 @@ const AnketaScreen = ({navigation}) => {
     }
   };
 
-  const getAnketaItemValue = itemName => {
-    switch (itemName) {
+  const getMainItemValue = itemValue => {
+    switch (itemValue) {
       case 'name':
         return name;
 
@@ -85,15 +135,20 @@ const AnketaScreen = ({navigation}) => {
       case 'sex':
         return sex;
 
-      case 'hair_color':
-        return 'Цвет волос';
-
-      case 'hobbies':
-        return 'Хобби';
-
       default:
         break;
     }
+  };
+
+  const changeAnketaItemValue = async ({itemTitle, itemValue}) => {
+    navigation.navigate('EditAnketa', {
+      category: itemValue,
+      categoryText: itemTitle,
+    });
+  };
+
+  const getAnketaItemValue = itemValue => {
+    return anketa?.[itemValue]?.translate;
   };
 
   const goToSettings = () => {
@@ -141,37 +196,48 @@ const AnketaScreen = ({navigation}) => {
           </Text>
         </TouchableOpacity>
 
+        {isPhotosLoading ? (
+          <View style={styles.loader}>
+            <ActivityIndicator size="large" color="#ccc" />
+          </View>
+        ) : (
+          <ImageGallery imagesArr={photos} />
+        )}
+
         <View style={styles.itemListView}>
           {USER_PRIMARY_ITEMS.map((item, index) => (
             <ListItem
               key={item.text}
               text={translations.getString(`PROFILE.${item.text}`)}
-              value={getAnketaItemValue(item.itemName)}
+              value={getMainItemValue(item.itemName)}
               checked={item.checked}
-              iconSize={item.iconSize || 26}
+              iconSize={item.iconSize}
               itemType={item.itemType}
               iconName={item.iconName}
-              itemName={item.itemName}
+              itemValue={item.itemName}
               onPressItem={onPressItem}
             />
           ))}
         </View>
 
-        <View style={styles.itemListView}>
-          {ANKETA_ITEMS.map((item, index) => (
-            <ListItem
-              key={item.text}
-              text={translations.getString(`ANKETA.${item.text}`)}
-              value={getAnketaItemValue(item.itemName)}
-              checked={item.checked}
-              iconSize={item.iconSize || 26}
-              itemType={item.itemType}
-              iconName={item.iconName}
-              itemName={item.itemName}
-              onPressItem={onPressItem}
-            />
-          ))}
-        </View>
+        {isAnketaLoading || isAnketaTitlesLoading ? (
+          <View style={styles.loader}>
+            <ActivityIndicator size="large" color="#ccc" />
+          </View>
+        ) : (
+          <View style={styles.itemListView}>
+            {anketaTitles.map((item, index) => (
+              <ListItem
+                key={item.id}
+                text={item.translate}
+                value={getAnketaItemValue(item.value)}
+                itemTitle={item.translate}
+                itemValue={item.value}
+                onPressItem={changeAnketaItemValue}
+              />
+            ))}
+          </View>
+        )}
       </Container>
 
       <ModalWithInput
@@ -192,6 +258,12 @@ const AnketaScreen = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
+  loader: {
+    marginTop: 50,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
