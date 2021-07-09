@@ -10,10 +10,15 @@ import Router from './router';
 import {LocalizationProvider} from './localization/LocalizationContext';
 
 import NoNetworkBar from './components/NoNetworkBar';
+import {Permission, PERMISSION_TYPE} from './permissions';
 
 export default class MwDate extends Component {
   componentDidMount() {
     console.log('MwDate init');
+    Permission.requestMultiple([
+      PERMISSION_TYPE.location,
+      PERMISSION_TYPE.camera,
+    ]);
     // ErrorHelper.init();
     // // To hide splash screen
     // SplashScreen.hide();

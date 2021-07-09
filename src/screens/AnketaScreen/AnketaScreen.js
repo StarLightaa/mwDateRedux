@@ -33,8 +33,10 @@ import {DEFAULT_IMAGE_URI} from '../../store/constants/url';
 
 import {USER_PRIMARY_ITEMS} from '../../store/constants/index';
 import {updateUser} from '../../store/actions/auth';
-import {getAnketa, getAnketaTitles} from '../../store/actions/anketa';
+import {getAnketa, getAnketaTitles, getCity} from '../../store/actions/anketa';
 import {getPhotos} from '../../store/actions/photos';
+
+import Geolocation from 'react-native-geolocation-service';
 
 const SettingsIcon = props => <Icon {...props} name="settings-2-outline" />;
 
@@ -62,6 +64,8 @@ const AnketaScreen = ({navigation}) => {
   const photos = useSelector(store => store.photos.photos);
   const [isPhotosLoading, setIsPhotosLoading] = useState(true);
 
+  // const [location, setLocation] = useState(null);
+
   const fetchData = useCallback(async () => {
     await dispatch(getAnketa());
   }, []);
@@ -79,6 +83,46 @@ const AnketaScreen = ({navigation}) => {
   useEffect(() => {
     fetchPhotos().then(() => console.log('photos loading'));
   }, [fetchPhotos]);
+
+  const fetchLocation = useCallback(async () => {}, [fetchLocation]);
+
+  useEffect(() => {
+    if (!city) {
+      Geolocation.getCurrentPosition(
+        position => {
+          const {latitude, longitude} = position.coords;
+          // setLocation({
+          //   latitude,
+          //   longitude,
+          // });
+          getCityFromCoordinates({latitude, longitude});
+        },
+        error => {
+          console.log(error.code, error.message);
+        },
+        {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+      );
+    }
+  }, [fetchLocation]);
+
+  const getCityFromCoordinates = useCallback(async location => {
+    console.log('location', location);
+    if (location == null) {
+      return;
+    }
+    let response = await dispatch(getCity(location));
+    let address = response?.addresses[0]?.address;
+    let position = (response?.addresses[0]?.position).split(',');
+    dispatch(
+      updateUser({
+        country_name: address?.country || '',
+        country_code: address?.countryCode || '',
+        city_name: address?.localName || address?.freeformAddress || '',
+        position_lat: position[0] || '',
+        position_lon: position[1] || '',
+      }),
+    );
+  }, []);
 
   useFocusEffect(
     React.useCallback(() => {

@@ -1,6 +1,9 @@
 import APIHelper from '../../helpers/APIHelper';
 import {showToast} from '../../helpers/ToastHelper';
 
+import axios from 'axios';
+import {TOMTOM_API_KEY} from '../../store/constants/url';
+
 import {
   GET_ANKETA,
   GET_ANKETA_SUCCESS,
@@ -83,5 +86,19 @@ export const getPhotos = () => async dispatch => {
     console.log('photo error', error);
     dispatch({type: GET_PHOTOS_ERROR, payload: error});
     return [];
+  }
+};
+
+export const getCity = (location) => async dispatch => {
+  const {latitude, longitude} = location;
+  try {
+    const url = `https://api.tomtom.com/search/2/reverseGeocode/${latitude}%2C${longitude}.json?key=${TOMTOM_API_KEY}`;
+    const response = await axios.get(url);
+    console.log('tomtom response', response);
+    const data = response.data;
+    return data;
+  } catch (error) {
+    console.log('error', error);
+    return null;
   }
 };

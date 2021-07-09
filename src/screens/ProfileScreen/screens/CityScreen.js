@@ -27,11 +27,12 @@ const CityScreen = ({navigation}) => {
   };
 
   const saveData = item => {
+    console.log('saveCity',item);
     dispatch(
       updateUser({
         country_name: item?.address?.country || '',
         country_code: item?.address?.countryCode || '',
-        city_name: item?.address?.freeformAddress || '',
+        city_name: item?.address?.localName || item?.address?.freeformAddress || '',
         position_lat: item?.position?.lat || '',
         position_lon: item?.position?.lon || '',
       }),
