@@ -137,6 +137,10 @@ export default {
     HEADER_TITLE: 'Change birthday',
     SAVE_BTN: 'Save',
   },
+  CITY: {
+    HEADER_TITLE: 'Change city',
+    INPUT_PLACEHOLDER: 'Find city',
+  },
   MODAL_UNSAVED: {
     TITLE: 'Unsaved changes',
     DESCRIPTION: 'You have unsaved changes. Anyway continue?',

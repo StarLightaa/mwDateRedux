@@ -51,7 +51,6 @@ const SexScreen = ({navigation}) => {
         sex_id: value,
       }),
     );
-    // setEdited(false);
     navigation.goBack();
   };
 

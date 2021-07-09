@@ -50,6 +50,7 @@ const AnketaScreen = ({navigation}) => {
   const user = useSelector(store => store.auth.user);
   const name = user ? user.name : '';
   const birthday = user ? user.birthday : '';
+  const city = user ? user.city_name : '';
 
   const sex = user ? user.sex.translate : '';
   const [inputName, setInputName] = useState(name);
@@ -114,6 +115,10 @@ const AnketaScreen = ({navigation}) => {
         navigation.navigate('Sex');
         break;
 
+      case 'city':
+        navigation.navigate('City');
+        break;
+
       // case 'switch-account':
       //   navigation.navigate('Account', {accounts});
       //   break;
@@ -134,6 +139,9 @@ const AnketaScreen = ({navigation}) => {
 
       case 'sex':
         return sex;
+
+      case 'city':
+        return city;
 
       default:
         break;

@@ -132,8 +132,12 @@ export default {
   },
 
   BIRTHDAY: {
-    HEADER_TITLE: 'Смена дня рождения',
+    HEADER_TITLE: 'Изменить дату рождения',
     SAVE_BTN: 'Сохранить',
+  },
+  CITY: {
+    HEADER_TITLE: 'Изменить город',
+    INPUT_PLACEHOLDER: 'Найти город',
   },
   MODAL_UNSAVED: {
     TITLE: 'Несохраненные изменения',

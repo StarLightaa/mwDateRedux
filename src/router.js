@@ -21,6 +21,7 @@ import ResetPasswordByEmail from './screens/ResetPasswordScreen/ResetPasswordByE
 import ResetPasswordByOldPassword from './screens/ResetPasswordScreen/ResetPasswordByOldPassword';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import BirthdayScreen from './screens/ProfileScreen/screens/BirthdayScreen';
+import CityScreen from './screens/ProfileScreen/screens/CityScreen';
 import SexScreen from './screens/ProfileScreen/screens/SexScreen';
 
 import SearchScreen from './screens/SearchScreen/SearchScreen';
@@ -46,6 +47,7 @@ const AnketaStack = () => (
 
     <Stack.Screen name="Profile" component={ProfileScreen} />
     <Stack.Screen name="Birthday" component={BirthdayScreen} />
+    <Stack.Screen name="City" component={CityScreen} />
     <Stack.Screen name="Sex" component={SexScreen} />
     <Stack.Screen name="HairColor" component={HairColorScreen} />
     <Stack.Screen name="Hobbies" component={HobbiesScreen} />
