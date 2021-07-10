@@ -1,5 +1,10 @@
 export default {
   WELCOME: 'Welcome',
+
+  ERRORS: {
+    INTERNAL_SERVER_ERROR: 'Ошибка сервера',
+  },
+
   COMMON: {
     MAKE_PHOTO: 'Открыть камеру',
     CHOOSE_PHOTO: 'Выбрать из галереи',
@@ -40,6 +45,7 @@ export default {
     NO_ACCOUNT: 'Нет учетной записи?',
     GO_TO_LOGIN: 'Войти в аккаунт',
     CHANGE_LANGUAGE: 'Сменить язык',
+    SUCCESSFULLY: 'Поздравляем, вы успешно зарегистрировались! Пожалуйста авторизируйтесь',
   },
 
   RESTORE_PASSWORD: {

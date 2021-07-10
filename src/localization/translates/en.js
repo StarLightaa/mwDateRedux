@@ -1,6 +1,10 @@
 export default {
   WELCOME: 'Welcome',
 
+  ERRORS: {
+    INTERNAL_SERVER_ERROR: 'Internal Server Error',
+  },
+
   COMMON: {
     MAKE_PHOTO: 'Make photo from camera',
     CHOOSE_PHOTO: 'Choose photo from gallery',
@@ -41,6 +45,7 @@ export default {
     NO_ACCOUNT: "Don't have an account?",
     GO_TO_LOGIN: 'Go to sign in',
     CHANGE_LANGUAGE: 'Change language',
+    SUCCESSFULLY: 'Congratulations, you have successfully registered! Please log in',
   },
 
   RESTORE_PASSWORD: {

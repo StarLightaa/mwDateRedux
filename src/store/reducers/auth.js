@@ -104,7 +104,7 @@ export default (state = initialState, action) => {
     case LOGIN_ERROR:
       let loginEmailError = null;
       let loginPasswordError = null;
-      let validateLoginErrors = action.payload.data.error;
+      let validateLoginErrors = action.payload.data?.error;
       console.log('validateErrors', validateLoginErrors);
       if (validateLoginErrors) {
         loginEmailError = validateLoginErrors.email;
@@ -142,7 +142,7 @@ export default (state = initialState, action) => {
       let password = null;
       let passwordConfirmation = null;
 
-      let validateErrors = action.payload.data.error;
+      let validateErrors = action.payload.data?.error;
       console.log('validateErrors', validateErrors);
       if (validateErrors) {
         firstnameError = validateErrors.firstname;
@@ -197,7 +197,7 @@ export default (state = initialState, action) => {
       let newPasswordError = null;
       let passwordConfirmError = null;
 
-      let validateChangePasswordErrors = action.payload.data.error;
+      let validateChangePasswordErrors = action.payload.data?.error;
       console.log('validateChangePasswordErrors', validateChangePasswordErrors);
       if (validateChangePasswordErrors) {
         currentPasswordError = validateChangePasswordErrors.current_password;
@@ -235,7 +235,7 @@ export default (state = initialState, action) => {
     case SEND_RESET_MAIL_ERROR:
       let resetMailError = null;
 
-      let validateResetMailErrors = action.payload.data.error;
+      let validateResetMailErrors = action.payload.data?.error;
       console.log('validateResetMailErrors', validateResetMailErrors);
       if (validateResetMailErrors) {
         resetMailError = validateResetMailErrors.email;
