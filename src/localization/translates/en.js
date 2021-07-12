@@ -10,6 +10,7 @@ export default {
     CHOOSE_PHOTO: 'Choose photo from gallery',
     UPLOAD_PHOTO: 'Upload image',
     CHANGE_PHOTO: 'Change photo',
+    ADD: 'Add',
   },
 
   LOGIN: {

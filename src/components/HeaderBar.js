@@ -24,6 +24,10 @@ const MoreIcon = props => {
   return <Icon {...props} name="more-horizontal-outline" />;
 };
 
+const SettingsIcon = props => {
+  return <Icon {...props} name="settings-2-outline" />;
+};
+
 class HeaderBar extends Component {
   renderLeftControl = () => {
     const {onBackPress, leftButtonIcon} = this.props;
@@ -42,6 +46,8 @@ class HeaderBar extends Component {
         return <TopNavigationAction icon={MoreIcon} onPress={onRightPress} />;
       case 'save':
         return <TopNavigationAction icon={SaveIcon} onPress={onRightPress} />;
+      case 'settings':
+        return <TopNavigationAction icon={SettingsIcon} onPress={onRightPress} />;
       default:
         return <TopNavigationAction icon={SaveIcon} onPress={onRightPress} />;
     }

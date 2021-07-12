@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Toggle, Divider, Icon} from '@ui-kitten/components';
+
+import {LocalizationContext} from '../localization/LocalizationContext';
 
 const ListItem = ({
   text,
@@ -13,13 +15,19 @@ const ListItem = ({
   itemValue,
   onPressItem,
 }) => {
+  const {translations} = useContext(LocalizationContext);
+
   return (
     <React.Fragment>
       <TouchableOpacity
         style={[styles.section, styles.enabledSection]}
         onPress={() => onPressItem({itemTitle, itemValue})}>
         <Text style={styles.sectionText}>{text}</Text>
-        <Text style={styles.sectionValue}>{value}</Text>
+        {value ? (
+          <Text style={styles.sectionValue}>{value}</Text>
+        ) : (
+          <Text style={[styles.sectionValue, {color:'green'}]}>Добавить</Text>
+        )}
         <Icon
           name={iconName || 'chevron-right-outline'}
           //   fill={theme['color-primary-default']}

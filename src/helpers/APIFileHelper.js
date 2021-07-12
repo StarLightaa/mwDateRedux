@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as rax from 'retry-axios';
 import {getHeadersUploadFiles} from './AuthHelper';
 import {showToast} from './ToastHelper';
 

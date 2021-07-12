@@ -226,28 +226,13 @@ const AnketaScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <HeaderBar title={translations.ANKETA.HEADER_TITLE} />
+      <HeaderBar
+        title={translations.ANKETA.HEADER_TITLE}
+        showRightButton
+        onRightPress={goToSettings}
+        buttonType='settings'
+      />
       <Container>
-        <Button
-          style={styles.button}
-          accessoryLeft={SettingsIcon}
-          onPress={goToSettings}
-        />
-
-        <TouchableOpacity onPress={openSheet}>
-          <Image
-            width={150}
-            height={150}
-            source={{uri: localFile?.path || localFile || DEFAULT_IMAGE_URI}}
-            style={styles.imageView}
-          />
-          <Text style={styles.chooseText}>
-            {localFile
-              ? translations.COMMON.CHANGE_PHOTO
-              : translations.COMMON.UPLOAD_PHOTO}
-          </Text>
-        </TouchableOpacity>
-
         {isPhotosLoading ? (
           <View style={styles.loader}>
             <ActivityIndicator size="large" color="#ccc" />

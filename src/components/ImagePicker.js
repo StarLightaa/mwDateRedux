@@ -26,7 +26,7 @@ const ImagePicker = React.forwardRef(({onFileSelected}, ref) => {
       onPress: () => {
         ImagePickerCropper.openCamera({
           width: 300,
-          height: 300,
+          height: 400,
           cropping: true,
           freeStyleCropEnabled: true,
         })
@@ -42,7 +42,7 @@ const ImagePicker = React.forwardRef(({onFileSelected}, ref) => {
       onPress: () => {
         ImagePickerCropper.openPicker({
           width: 300,
-          height: 300,
+          height: 400,
           cropping: true,
           freeStyleCropEnabled: true,
         })

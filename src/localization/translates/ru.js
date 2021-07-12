@@ -10,6 +10,7 @@ export default {
     CHOOSE_PHOTO: 'Выбрать из галереи',
     UPLOAD_PHOTO: 'Загрузить фотографию',
     CHANGE_PHOTO: 'Изменить фотографию',
+    ADD: 'Добавить',
   },
 
   LOGIN: {
@@ -99,7 +100,7 @@ export default {
     CHANGE_NAME: 'Имя',
     CHANGE_EMAIL: 'Электронный адрес',
     CHANGE_PASSWORD: 'Пароль',
-    CHANGE_LANGUAGE: 'Язык',
+    CHANGE_LANGUAGE: 'Язык приложения',
     CHANGE_AGE: 'Возраст',
     CHANGE_DATE_BIRTH: 'Дата рождения',
     CHANGE_SEX: 'Пол',

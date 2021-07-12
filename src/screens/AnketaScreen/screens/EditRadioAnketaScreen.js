@@ -25,7 +25,7 @@ const EditAnketaScreen = ({route, navigation}) => {
 
   const anketa = useSelector(store => store.anketa.fields);
 
-  const prevValue = anketa?.[category].id;
+  const prevValue = anketa?.[category]?.id;
   const [value, setValue] = useState('');
   const [list, setList] = useState([]);
 
@@ -61,7 +61,7 @@ const EditAnketaScreen = ({route, navigation}) => {
   }, [fetchListByCategory]);
 
   useEffect(() => {
-    setValue(anketa?.[category].id);
+    setValue(anketa?.[category]?.id);
   }, []);
 
   return (
