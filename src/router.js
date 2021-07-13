@@ -27,6 +27,7 @@ import SexScreen from './screens/ProfileScreen/screens/SexScreen';
 import SearchScreen from './screens/SearchScreen/SearchScreen';
 import LanguageScreen from './screens/LanguageScreen/LanguageScreen';
 
+import MyAnketaScreen from './screens/AnketaScreen/MyAnketaScreen';
 import AnketaScreen from './screens/AnketaScreen/AnketaScreen';
 import HairColorScreen from './screens/AnketaScreen/screens/HairColorScreen';
 import HobbiesScreen from './screens/AnketaScreen/screens/HobbiesScreen';
@@ -38,12 +39,13 @@ const Stack = createStackNavigator();
 const SearchStack = () => (
   <Stack.Navigator initialRouteName="Search">
     <Stack.Screen name="Search" component={SearchScreen} />
+    <Stack.Screen name="Anketa" component={AnketaScreen} />
   </Stack.Navigator>
 );
 
 const AnketaStack = () => (
-  <Stack.Navigator initialRouteName="Anketa" headerMode="none">
-    <Stack.Screen name="Anketa" component={AnketaScreen} />
+  <Stack.Navigator initialRouteName="MyAnketa" headerMode="none">
+    <Stack.Screen name="MyAnketa" component={MyAnketaScreen} />
 
     <Stack.Screen name="Profile" component={ProfileScreen} />
     <Stack.Screen name="Birthday" component={BirthdayScreen} />
@@ -75,10 +77,10 @@ const ProfileStack = () => (
 
 const TabStack = () => (
   <Tab.Navigator
-    initialRouteName="Anketa"
+    initialRouteName="Search"
     tabBar={props => <TabBar {...props} />}>
     <Tab.Screen name="Search" component={SearchStack} />
-    <Tab.Screen name="Anketa" component={AnketaStack} />
+    <Tab.Screen name="MyAnketa" component={AnketaStack} />
   </Tab.Navigator>
 );
 

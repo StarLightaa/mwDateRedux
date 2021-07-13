@@ -226,7 +226,12 @@ const AnketaScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <HeaderBar title="Имя | Возраст" />
+      <HeaderBar
+        title={translations.ANKETA.HEADER_TITLE}
+        showRightButton
+        onRightPress={goToSettings}
+        buttonType='settings'
+      />
       <Container>
         {isPhotosLoading ? (
           <View style={styles.loader}>
@@ -235,6 +240,22 @@ const AnketaScreen = ({navigation}) => {
         ) : (
           <ImageGallery imagesArr={photos} />
         )}
+
+        <View style={styles.itemListView}>
+          {USER_PRIMARY_ITEMS.map((item, index) => (
+            <ListItem
+              key={item.text}
+              text={translations.getString(`PROFILE.${item.text}`)}
+              value={getMainItemValue(item.itemName)}
+              checked={item.checked}
+              iconSize={item.iconSize}
+              itemType={item.itemType}
+              iconName={item.iconName}
+              itemValue={item.itemName}
+              onPressItem={onPressItem}
+            />
+          ))}
+        </View>
 
         {isAnketaLoading || isAnketaTitlesLoading ? (
           <View style={styles.loader}>
@@ -268,11 +289,10 @@ const AnketaScreen = ({navigation}) => {
           name: inputName,
         })}
       />
+      <ImagePicker onFileSelected={onFileSelected} ref={sheetRef} />
     </SafeAreaView>
   );
 };
-
-const deviceWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   loader: {
@@ -285,6 +305,40 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     // backgroundColor: theme['background-basic-color-1'],
+  },
+  itemListView: {
+    flex: 1,
+    marginTop: 50,
+  },
+  button: {
+    position: 'absolute',
+    right: 20,
+    top: 20,
+    zIndex: 100,
+    width: 50,
+    height: 50,
+    backgroundColor: '#ccc',
+    borderRadius: 50,
+    borderWidth: 0,
+  },
+
+  imageView: {
+    width: 150,
+    height: 150,
+    borderRadius: 100,
+    alignSelf: 'center',
+  },
+
+  chooseText: {
+    // color: colors.primary,
+    marginTop: 10,
+    textAlign: 'center',
+  },
+
+  anketaMain: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
 

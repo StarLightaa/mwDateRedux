@@ -4,12 +4,16 @@ import auth from './auth';
 import settings from './settings';
 import anketa from './anketa';
 import photos from './photos';
+import anketas from './anketas';
+import matches from './matches';
 
 const rootReducer = combineReducers({
   auth,
   settings,
   anketa,
-  photos
+  photos,
+  anketas,
+  matches,
 });
 
 export default (state, action) =>
