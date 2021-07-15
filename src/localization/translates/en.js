@@ -93,6 +93,7 @@ export default {
   BOTTOM_TABS: {
     SEARCH: 'Search',
     ANKETA: 'Anketa',
+    MESSAGES: 'Messages',
     PROFILE: 'Profile',
   },
 

@@ -33,6 +33,9 @@ import HairColorScreen from './screens/AnketaScreen/screens/HairColorScreen';
 import HobbiesScreen from './screens/AnketaScreen/screens/HobbiesScreen';
 import EditRadioAnketaScreen from './screens/AnketaScreen/screens/EditRadioAnketaScreen';
 
+import MessagesScreen from './screens/Messages/MessagesScreen';
+import ChatScreen from './screens/Messages/ChatScreen';
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -40,6 +43,20 @@ const SearchStack = () => (
   <Stack.Navigator initialRouteName="Search">
     <Stack.Screen name="Search" component={SearchScreen} />
     <Stack.Screen name="Anketa" component={AnketaScreen} />
+  </Stack.Navigator>
+);
+
+const MessageStack = () => (
+  <Stack.Navigator initialRouteName="Messages">
+    <Stack.Screen name="Messages" component={MessagesScreen} />
+    <Stack.Screen
+      name="Chat"
+      component={ChatScreen}
+      options={({route}) => ({
+        title: route.params.userName,
+        headerBackTitleVisible: false,
+      })}
+    />
   </Stack.Navigator>
 );
 
@@ -77,9 +94,10 @@ const ProfileStack = () => (
 
 const TabStack = () => (
   <Tab.Navigator
-    initialRouteName="Search"
+    initialRouteName="Messages"
     tabBar={props => <TabBar {...props} />}>
     <Tab.Screen name="Search" component={SearchStack} />
+    <Tab.Screen name="Messages" component={MessageStack} />
     <Tab.Screen name="MyAnketa" component={AnketaStack} />
   </Tab.Navigator>
 );
@@ -89,8 +107,8 @@ export const config = {
     ResetPasswordByEmail: {
       path: 'reset/:token/:email',
       parse: {
-        token: (token) => `${token}`,
-        email: (email) => `${email}`,
+        token: token => `${token}`,
+        email: email => `${email}`,
       },
     },
   },

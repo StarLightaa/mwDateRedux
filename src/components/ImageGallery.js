@@ -29,7 +29,7 @@ const ImageGallery = ({imagesArr}) => {
 
   const prepareData = () => {
     let arr = [];
-    arr = imagesArr.map((obj, index) => {
+    arr = imagesArr?.map((obj, index) => {
       return {
         id: obj.id,
         url: SERVER_URL + obj.src,

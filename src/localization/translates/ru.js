@@ -92,6 +92,7 @@ export default {
   BOTTOM_TABS: {
     SEARCH: 'Поиск',
     ANKETA: 'Анкета',
+    MESSAGES: 'Сообщения',
     PROFILE: 'Профиль',
   },
 

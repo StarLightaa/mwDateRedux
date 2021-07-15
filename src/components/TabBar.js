@@ -12,6 +12,7 @@ import {LocalizationContext} from '../localization/LocalizationContext';
 
 const SearchIcon = style => <Icon {...style} name="search" />;
 const AnketaIcon = style => <Icon {...style} name="person" />;
+const MessageIcon = style => <Icon {...style} name="message-circle" />;
 const SettingsIcon = style => <Icon {...style} name="settings" />;
 
 const TabBarComponent = ({eva, navigation, state}) => {
@@ -30,6 +31,7 @@ const TabBarComponent = ({eva, navigation, state}) => {
       appearance="noIndicator"
       style={styles.tabBar}>
       <BottomNavigationTab title={translations.BOTTOM_TABS.SEARCH} icon={SearchIcon} />
+      <BottomNavigationTab title={translations.BOTTOM_TABS.MESSAGES} icon={MessageIcon} />
       <BottomNavigationTab title={translations.BOTTOM_TABS.ANKETA} icon={AnketaIcon} />
     </BottomNavigation>
   );
